@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/gocardless/bump-test#readme",
   "dependencies": {
-    "chalk": "0.4.0",
-    "fetch-factory": "^0.0.1"
+    "chalk": "5.4.1",
+    "fetch-factory": "^0.2.1"
   },
   "devDependencies": {
-    "etag": "^1.0.0"
+    "etag": "^1.8.1"
   }
 }

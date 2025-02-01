@@ -2,6 +2,6 @@
   "name": "package",
   "version": "0.0.1",
   "dependencies": {
-    "yargs": "^16.2.0"
+    "yargs": "^17.7.2"
   }
 }

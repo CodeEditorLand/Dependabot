@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Testing",
   "dependencies": {
-    "react": "15.2.0",
+    "react": "19.0.0",
     "@trainline/react-skeletor": "github:trainline/react-skeletor"
   }
 }

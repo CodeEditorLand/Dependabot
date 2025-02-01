@@ -8,8 +8,8 @@
   "version": "0.0.1",
   "main": "gulpfile.js",
   "dependencies": {
-    "fetch-factory": "0.1.x",
-    "gulp": "^4.0.0-alpha.2"
+    "fetch-factory": "0.2.x",
+    "gulp": "^5.0.0"
   },
   "scripts": {
     "test": "gulp styles",

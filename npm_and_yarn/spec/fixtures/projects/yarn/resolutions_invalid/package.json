@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jumpn/utils-graphql": "^0.5.3",
+    "@jumpn/utils-graphql": "^0.6.0",
     "graphql": "git://github.com/graphql/graphql-js.git#npm"
   },
   "resolutions": {

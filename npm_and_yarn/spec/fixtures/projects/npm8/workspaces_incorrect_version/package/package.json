@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/gocardless/bump-test#readme",
   "dependencies": {
-    "yargs": "^16.2.0"
+    "yargs": "^17.7.2"
   }
 }

@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "test-missing-dep-name-npm-package": "dependabot-fixtures/test-missing-dep-name-npm-package#v1.0.0"
+    "test-missing-dep-name-npm-package": "dependabot-fixtures/test-missing-dep-name-npm-package#v1.0.1"
   }
 }

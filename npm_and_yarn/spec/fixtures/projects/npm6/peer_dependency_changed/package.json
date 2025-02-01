@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "apollo-client": "^2.3.5",
-    "graphql": "^0.13.2",
-    "react": "^16.6.0",
-    "react-apollo": "2.1.8"
+    "apollo-client": "^2.6.10",
+    "graphql": "^16.10.0",
+    "react": "^19.0.0",
+    "react-apollo": "3.1.5"
   }
 }

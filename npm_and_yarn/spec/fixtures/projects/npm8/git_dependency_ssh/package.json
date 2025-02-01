@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/gocardless/bump-test#readme",
   "dependencies": {
-    "chalk": "0.4.0",
-    "lodash": "^1.2.1",
-    "stopwords": "0.0.1"
+    "chalk": "5.4.1",
+    "lodash": "^4.17.21",
+    "stopwords": "0.0.9"
   },
   "devDependencies": {
     "is-number": "git+ssh://git@github.com:jonschlinkert/is-number.git"

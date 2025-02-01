@@ -19,15 +19,15 @@
   "author": "Chris Thielen",
   "license": "MIT",
   "peerDependencies": {
-    "typedoc-plugin-external-module-name": "^1.0.0",
-    "typedoc-plugin-internal-external": "^1.0.0"
+    "typedoc-plugin-external-module-name": "^4.0.6",
+    "typedoc-plugin-internal-external": "^2.2.0"
   },
   "devDependencies": {
-    "@types/handlebars": "^4.0.31",
-    "husky": "^0.14.3",
-    "prettier": "^1.11.1",
-    "pretty-quick": "^1.4.1",
-    "typedoc": "^0.5.3",
-    "typescript": "^2.1.1"
+    "@types/handlebars": "^4.1.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.2",
+    "pretty-quick": "^4.0.0",
+    "typedoc": "^0.27.6",
+    "typescript": "^5.7.3"
   }
 }

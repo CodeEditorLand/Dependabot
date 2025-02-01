@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "is-accessor-descriptor": "^1.0.0",
-    "kind-of": "^3.2.2"
+    "is-accessor-descriptor": "^3.0.5",
+    "kind-of": "^6.0.3"
   }
 }

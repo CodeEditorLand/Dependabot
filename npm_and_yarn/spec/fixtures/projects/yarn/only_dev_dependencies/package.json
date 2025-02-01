@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
   "devDependencies": {
-    "etag": "^1.0.0"
+    "etag": "^1.8.1"
   }
 }

@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-adodb": "^5.0.0"
+    "node-adodb": "^5.0.3"
   }
 }

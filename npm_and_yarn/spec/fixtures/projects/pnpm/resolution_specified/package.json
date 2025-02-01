@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
   "dependencies": {
-    "fetch-factory": "0.1.x"
+    "fetch-factory": "0.2.x"
   },
   "devDependencies": {
-    "lodash": "^3.0"
+    "lodash": "^4.17"
   },
   "resolutions": {
     "lodash": "3.10.0"

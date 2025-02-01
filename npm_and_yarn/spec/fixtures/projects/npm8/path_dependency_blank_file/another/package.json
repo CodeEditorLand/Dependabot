@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "right-pad": "^1.0.0"
+    "right-pad": "^1.0.1"
   }
 }

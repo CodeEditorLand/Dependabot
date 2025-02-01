@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sentry/react": "7.37.1"
+    "@sentry/react": "8.53.0"
   }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@dependabot/test-missing-scoped-dep-version-npm-package": "https://github.com/dependabot-fixtures/test-missing-scoped-dep-version-npm-package#v1.0.3"
+    "@dependabot/test-missing-scoped-dep-version-npm-package": "https://github.com/dependabot-fixtures/test-missing-scoped-dep-version-npm-package#v1.0.4"
   },
   "devDependencies": {},
   "scripts": {

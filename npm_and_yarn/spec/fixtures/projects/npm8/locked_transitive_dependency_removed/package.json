@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dependabot-fixtures/npm-remove-dependency": "10.0.0"
+    "@dependabot-fixtures/npm-remove-dependency": "10.0.1"
   }
 }
