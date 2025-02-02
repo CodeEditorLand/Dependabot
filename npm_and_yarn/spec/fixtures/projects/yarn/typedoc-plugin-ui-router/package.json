@@ -1,33 +1,32 @@
 {
-  "name": "typedoc-plugin-ui-router",
-  "version": "1.0.6",
-  "description": "Typedoc customizations for ui-router",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "prepublish": "npm run build",
-    "precommit": "pretty-quick --staged"
-  },
-  "keywords": [
-    "typedocplugin",
-    "typedoc"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/christopherthielen/typedoc-plugin-ui-router"
-  },
-  "author": "Chris Thielen",
-  "license": "MIT",
-  "peerDependencies": {
-    "typedoc-plugin-external-module-name": "^4.0.6",
-    "typedoc-plugin-internal-external": "^2.2.0"
-  },
-  "devDependencies": {
-    "@types/handlebars": "^4.1.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.4.2",
-    "pretty-quick": "^4.0.0",
-    "typedoc": "^0.27.6",
-    "typescript": "^5.7.3"
-  }
+	"name": "typedoc-plugin-ui-router",
+	"version": "1.0.6",
+	"description": "Typedoc customizations for ui-router",
+	"keywords": [
+		"typedocplugin",
+		"typedoc"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/christopherthielen/typedoc-plugin-ui-router"
+	},
+	"license": "MIT",
+	"author": "Chris Thielen",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc",
+		"prepublish": "npm run build"
+	},
+	"devDependencies": {
+		"@types/handlebars": "^4.1.0",
+		"husky": "^9.1.7",
+		"prettier": "^3.4.2",
+		"pretty-quick": "^4.0.0",
+		"typedoc": "^0.27.6",
+		"typescript": "^5.7.3"
+	},
+	"peerDependencies": {
+		"typedoc-plugin-external-module-name": "^4.0.6",
+		"typedoc-plugin-internal-external": "^2.2.0"
+	}
 }
