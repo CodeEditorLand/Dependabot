@@ -3,7 +3,7 @@
   "description": "",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "graphql-cli": "4.1.0"
   }
 }

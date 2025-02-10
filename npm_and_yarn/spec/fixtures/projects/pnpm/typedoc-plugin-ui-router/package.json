@@ -20,9 +20,9 @@
 	"devDependencies": {
 		"@types/handlebars": "^4.1.0",
 		"husky": "^9.1.7",
-		"prettier": "^3.4.2",
+		"prettier": "^3.5.0",
 		"pretty-quick": "^4.0.0",
-		"typedoc": "^0.27.6",
+		"typedoc": "^0.27.7",
 		"typescript": "^5.7.3"
 	},
 	"peerDependencies": {

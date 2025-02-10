@@ -17,7 +17,7 @@
     },
     "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
     "dependencies": {
-	"@angular/compiler-cli": "^19.1.4",
+	"@angular/compiler-cli": "^19.1.5",
 	"typescript": "5.7"
     }
 }

@@ -8,6 +8,6 @@
     "url": "https://github.com/Meoseon-Division/node-red-contrib-ssafy-meoseon"
   },
   "devDependencies": {
-    "eslint": "^9.19.0"
+    "eslint": "^9.20.0"
   }
 }
