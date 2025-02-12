@@ -782,7 +782,7 @@ module Dependabot
           FileUtils.mkdir_p(path)
 
           clone_options = StringIO.new
-          clone_options << "--no-tags --depth 1"
+          clone_options << "--no-tags --depth 2"
           clone_options << " --recurse-submodules --shallow-submodules"
           clone_options << " --branch #{source.branch} --single-branch" if source.branch
 
@@ -824,13 +824,13 @@ module Dependabot
             # since Dependabot always wants to use the latest commit on a branch.
             Dir.chdir(path) do
               fetch_options = StringIO.new
-              fetch_options << "--depth 1"
+              fetch_options << "--depth 2"
               fetch_options << if submodule_cloning_failed
                                  " --no-recurse-submodules"
                                else
                                  " --recurse-submodules=on-demand"
                                end
-              # Need to fetch the commit due to the --depth 1 above.
+              # Need to fetch the commit due to the --depth 2 above.
               SharedHelpers.run_shell_command("git fetch #{fetch_options.string} origin #{source.commit}")
 
               reset_options = StringIO.new
