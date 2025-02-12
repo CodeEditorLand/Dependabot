@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "polling-to-event": "^2.1.0"
+    "polling-to-event": "2.1.0"
   }
 }

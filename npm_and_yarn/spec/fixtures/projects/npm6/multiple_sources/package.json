@@ -9,7 +9,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "fetch-factory": "0.2.x",
-    "gulp": "^5.0.0"
+    "gulp": "5.0.0"
   },
   "scripts": {
     "test": "gulp styles",

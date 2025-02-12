@@ -17,8 +17,8 @@
     },
     "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
     "dependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
-        "fetch-factory": "^0.2.1"
+        "react": "19.0.0",
+        "react-dom": "19.0.0",
+        "fetch-factory": "0.2.1"
     }
 }

@@ -5,7 +5,7 @@
   "license": "UNLICENSED",
   "owner": "foo",
   "engines": {
-    "node": "^18.12.1"
+    "node": "18.12.1"
   },
   "private": true
 }

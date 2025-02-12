@@ -4,6 +4,6 @@
   "contributors": [],
   "dependencies": {
     "@bower_components/browser-update": "Graffino/Browser-Update#2.0.5",
-    "fetch-factory": "^0.2.1"
+    "fetch-factory": "0.2.1"
   }
 }

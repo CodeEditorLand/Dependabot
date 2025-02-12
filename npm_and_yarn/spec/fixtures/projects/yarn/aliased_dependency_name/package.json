@@ -5,6 +5,6 @@
     "my-fetch-factory@npm:fetch-factory": "0.0.2"
   },
   "devDependencies": {
-    "etag": "^1.8.1"
+    "etag": "1.8.1"
   }
 }

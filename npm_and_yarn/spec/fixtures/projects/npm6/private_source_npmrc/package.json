@@ -17,14 +17,14 @@
   },
   "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
   "dependencies": {
-    "fetch-factory": "^0.0.1",
-    "chalk": "^2.0.0"
+    "fetch-factory": "0.0.1",
+    "chalk": "2.0.0"
   },
   "devDependencies": {
-    "@dependabot/etag": "^1.0.0",
-    "@dependabot/pack-core": "^2.0.1",
-    "@dependabot/pack-core-2": "^2.0.1",
-    "@dependabot/pack-core-3": "^2.0.1",
-    "@dependabot/pack-core-4": "^2.0.1"
+    "@dependabot/etag": "1.0.0",
+    "@dependabot/pack-core": "2.0.1",
+    "@dependabot/pack-core-2": "2.0.1",
+    "@dependabot/pack-core-3": "2.0.1",
+    "@dependabot/pack-core-4": "2.0.1"
   }
 }

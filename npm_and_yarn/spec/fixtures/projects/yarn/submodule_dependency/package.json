@@ -5,14 +5,14 @@
   "license": "UNLICENSED",
   "owner": "skedulo",
   "engines": {
-    "node": "^18.12.1"
+    "node": "18.12.1"
   },
   "scripts": {
     "sub-module": "yarn workspace yarn-workspace-git-submodule-example",
     "main": "yarn workspace yarn-workspace-example"
   },
   "devDependencies": {
-    "workspaces": "^0.1.0"
+    "workspaces": "0.1.0"
   },
   "workspaces": [
     "yarn-workspace-example",

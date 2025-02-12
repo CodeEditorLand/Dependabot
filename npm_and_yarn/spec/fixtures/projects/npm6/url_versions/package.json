@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/compassdigital/compassdigital.id#readme",
   "dependencies": {
-    "hashids": "^2.3.0"
+    "hashids": "2.3.0"
   },
   "devDependencies": {
-    "assert": "^2.1.0",
-    "should": "^13.2.3",
-    "should-http": "^0.1.1"
+    "assert": "2.1.0",
+    "should": "13.2.3",
+    "should-http": "0.1.1"
   }
 }

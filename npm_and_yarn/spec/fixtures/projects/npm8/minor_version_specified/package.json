@@ -20,6 +20,6 @@
     "fetch-factory": "0.2.x"
   },
   "devDependencies": {
-    "etag": "^1.8.1"
+    "etag": "1.8.1"
   }
 }

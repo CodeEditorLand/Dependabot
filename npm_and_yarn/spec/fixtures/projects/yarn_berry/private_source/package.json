@@ -17,10 +17,10 @@
     },
     "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
     "dependencies": {
-      "fetch-factory": "^0.2.1",
-      "chalk": "^5.4.1"
+      "fetch-factory": "0.2.1",
+      "chalk": "5.4.1"
     },
     "devDependencies": {
-      "@dependabot/etag": "^1.0.0"
+      "@dependabot/etag": "1.0.0"
     }
 }

@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fetch-factory": "^0.2.1",
+    "fetch-factory": "0.2.1",
     "web3": "4.16.0"
   }
 }

@@ -2,7 +2,7 @@
   "name": "duplicate_dependency",
   "version": "0.1.0",
   "dependencies": {
-    "preact": "^10.25.4"
+    "preact": "10.25.4"
   },
   "devDependencies": {
     "preact": "10.25.4"

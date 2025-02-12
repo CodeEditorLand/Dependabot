@@ -20,6 +20,6 @@
     "fetch-factory": "0.2.x"
   },
   "devDependencies": {
-    "fetch-factory": "^0.2.1"
+    "fetch-factory": "0.2.1"
   }
 }

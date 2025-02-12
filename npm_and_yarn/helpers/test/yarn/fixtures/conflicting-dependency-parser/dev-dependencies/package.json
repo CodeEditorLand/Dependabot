@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "objnest": "^5.1.1"
+    "objnest": "5.1.1"
   }
 }

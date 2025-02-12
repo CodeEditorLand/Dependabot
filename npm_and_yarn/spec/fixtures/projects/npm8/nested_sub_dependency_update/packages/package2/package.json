@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "objnest": "^5.1.1"
+    "objnest": "5.1.1"
   }
 }

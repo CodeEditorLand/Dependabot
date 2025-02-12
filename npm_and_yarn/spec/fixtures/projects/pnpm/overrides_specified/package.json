@@ -20,7 +20,7 @@
     "fetch-factory": "0.2.x"
   },
   "devDependencies": {
-    "lodash": "^4.17"
+    "lodash": "4.17"
   },
   "pnpm": {
     "overrides": {

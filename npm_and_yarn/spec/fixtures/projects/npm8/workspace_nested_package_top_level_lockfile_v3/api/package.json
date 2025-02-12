@@ -4,6 +4,6 @@
 	"homepage": "https://github.com/dependabot/test",
 	"description": "Test",
 	"dependencies": {
-		"uuid": "^11.0.5"
+		"uuid": "11.0.5"
 	}
 }

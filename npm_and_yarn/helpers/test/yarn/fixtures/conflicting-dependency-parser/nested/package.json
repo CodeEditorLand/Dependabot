@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "askconfig": "^4.0.4"
+    "askconfig": "4.0.4"
   }
 }

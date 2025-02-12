@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
   "dependencies": {
-    "fsevents": "^2.3.3"
+    "fsevents": "2.3.3"
   }
 }

@@ -8,6 +8,6 @@
   "private": false,
   "flat": true,
   "devDependencies": {
-      "etag": "^1.8.1"
+      "etag": "1.8.1"
   }
 }

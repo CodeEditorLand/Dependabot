@@ -1,8 +1,8 @@
 {
   "name": "@colend-contract-helpers",
   "dependencies": {
-    "@commitlint/cli": "^19.7.1",
-    "is-positive": "^3.1.0",
-    "left-pad": "^1.3.0"
+    "@commitlint/cli": "19.7.1",
+    "is-positive": "3.1.0",
+    "left-pad": "1.3.0"
   }
 }

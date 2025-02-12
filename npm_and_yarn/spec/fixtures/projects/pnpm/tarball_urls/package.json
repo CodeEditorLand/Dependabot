@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3"
+    "babel-core": "6.26.3"
   }
 }
