@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "raven-js": "getsentry/raven-js#9.0.1"
+    "raven-js": "getsentry/raven-js#9.1.0"
   }
 }

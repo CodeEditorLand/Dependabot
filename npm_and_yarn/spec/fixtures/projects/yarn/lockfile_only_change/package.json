@@ -82,12 +82,12 @@
 		"eslint-plugin-import": "2.31.0",
 		"eslint-plugin-jest": "28.11.0",
 		"eslint-plugin-prettier": "5.2.3",
-		"flow-bin": "0.261.0",
+		"flow-bin": "0.261.1",
 		"git-contributors": "0.2.5",
 		"husky": "9.1.7",
 		"jest-cli": "29.7.0",
 		"lint-staged": "15.4.3",
-		"prettier": "3.5.0",
+		"prettier": "3.5.1",
 		"semver": "7.7.1"
 	},
 	"engines": {
