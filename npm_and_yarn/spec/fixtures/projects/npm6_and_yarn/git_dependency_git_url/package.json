@@ -1,27 +1,27 @@
 {
-  "name": "bump-test",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gocardless/bump-test.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gocardless/bump-test/issues"
-  },
-  "homepage": "https://github.com/gocardless/bump-test#readme",
-  "dependencies": {
-    "chalk": "5.4.1",
-    "lodash": "4.17.21",
-    "stopwords": "0.0.9"
-  },
-  "devDependencies": {
-    "slick-carousel": "git://github.com/brianfryer/slick"
-  }
+	"name": "bump-test",
+	"version": "0.0.1",
+	"description": "",
+	"homepage": "https://github.com/gocardless/bump-test#readme",
+	"bugs": {
+		"url": "https://github.com/gocardless/bump-test/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gocardless/bump-test.git"
+	},
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"chalk": "5.4.1",
+		"lodash": "4.17.21",
+		"stopwords": "0.0.9"
+	},
+	"devDependencies": {
+		"slick-carousel": "git://github.com/brianfryer/slick"
+	}
 }

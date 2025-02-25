@@ -1,26 +1,26 @@
 {
-  "name": "bump-test",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gocardless/bump-test.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gocardless/bump-test/issues"
-  },
-  "homepage": "https://github.com/gocardless/bump-test#readme",
-  "dependencies": {
-    "showdown": "2.1.0"
-  },
-  "workspaces": [
-    "package"
-  ]
+	"name": "bump-test",
+	"version": "0.0.1",
+	"private": true,
+	"description": "",
+	"homepage": "https://github.com/gocardless/bump-test#readme",
+	"bugs": {
+		"url": "https://github.com/gocardless/bump-test/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gocardless/bump-test.git"
+	},
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"workspaces": [
+		"package"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"showdown": "2.1.0"
+	}
 }

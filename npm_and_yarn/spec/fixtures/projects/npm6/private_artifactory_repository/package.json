@@ -1,11 +1,11 @@
 {
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "fetch-factory": "0.2.1"
-  },
-  "devDependencies": {
-    "etag": "1.8.1"
-  }
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"fetch-factory": "0.2.1"
+	},
+	"devDependencies": {
+		"etag": "1.8.1"
+	}
 }

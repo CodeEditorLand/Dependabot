@@ -1,13 +1,13 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "An example",
-  "main": "app.js",
-  "author": "Example <me@example.com>",
-  "license": "UNLICENSED",
-  "private": false,
-  "flat": true,
-  "devDependencies": {
-      "etag": "1.8.1"
-  }
+	"name": "test",
+	"version": "1.0.0",
+	"private": false,
+	"description": "An example",
+	"license": "UNLICENSED",
+	"author": "Example <me@example.com>",
+	"main": "app.js",
+	"devDependencies": {
+		"etag": "1.8.1"
+	},
+	"flat": true
 }

@@ -1,15 +1,15 @@
 {
-  "name": "vuln-multiversion",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "is-accessor-descriptor": "3.0.5",
-    "kind-of": "6.0.3"
-  }
+	"name": "vuln-multiversion",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"is-accessor-descriptor": "3.0.5",
+		"kind-of": "6.0.3"
+	}
 }

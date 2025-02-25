@@ -1,11 +1,11 @@
 {
-  "name": "lockfile-version-unparseable",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "UNLICENSED",
-  "owner": "foo",
-  "engines": {
-    "node": "18.12.1"
-  },
-  "private": true
+	"name": "lockfile-version-unparseable",
+	"version": "1.0.0",
+	"private": true,
+	"license": "UNLICENSED",
+	"main": "index.js",
+	"engines": {
+		"node": "18.12.1"
+	},
+	"owner": "foo"
 }

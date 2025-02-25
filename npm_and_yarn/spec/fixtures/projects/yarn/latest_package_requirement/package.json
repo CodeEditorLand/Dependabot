@@ -1,8 +1,8 @@
 {
-  "name": "npm-latest",
-  "version": "1.0.0",
-  "dependencies": {
-    "etag": "latest",
-    "extend": "3.0.2"
-  }
+	"name": "npm-latest",
+	"version": "1.0.0",
+	"dependencies": {
+		"etag": "latest",
+		"extend": "3.0.2"
+	}
 }

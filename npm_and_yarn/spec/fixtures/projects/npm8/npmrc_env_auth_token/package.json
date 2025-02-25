@@ -1,22 +1,22 @@
 {
-    "name": "{{ name }}",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/waltfy/PROTO_TEST.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/waltfy/PROTO_TEST/issues"
-    },
-    "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
-    "dependencies": {
-        "fetch-factory": "0.2.1"
-    },
-    "devDependencies": {
-        "etag": "1.8.1"
-    }
+	"name": "{{ name }}",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "https://github.com/waltfy/PROTO_TEST#readme",
+	"bugs": {
+		"url": "https://github.com/waltfy/PROTO_TEST/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/waltfy/PROTO_TEST.git"
+	},
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"dependencies": {
+		"fetch-factory": "0.2.1"
+	},
+	"devDependencies": {
+		"etag": "1.8.1"
+	}
 }

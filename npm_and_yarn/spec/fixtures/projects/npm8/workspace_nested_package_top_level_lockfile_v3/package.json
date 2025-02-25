@@ -1,10 +1,10 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
-  "workspaces": [
-    "./api"
-  ],
-  "author": "",
-  "license": "ISC"
+	"name": "test",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "",
+	"workspaces": [
+		"./api"
+	]
 }
