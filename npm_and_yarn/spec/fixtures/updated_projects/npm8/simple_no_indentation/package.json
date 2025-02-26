@@ -1,13 +1,13 @@
 {
-  "name": "{{ name }}",
-  "version": "1.0.0",
-  "description": "description",
-  "author": "author",
-  "license": "ISC",
-  "dependencies": {
-    "fetch-factory": "0.2.1"
-  },
-  "devDependencies": {
-    "etag": "1.8.1"
-  }
+	"name": "{{ name }}",
+	"version": "1.0.0",
+	"description": "description",
+	"license": "ISC",
+	"author": "author",
+	"dependencies": {
+		"fetch-factory": "0.2.1"
+	},
+	"devDependencies": {
+		"etag": "1.8.1"
+	}
 }

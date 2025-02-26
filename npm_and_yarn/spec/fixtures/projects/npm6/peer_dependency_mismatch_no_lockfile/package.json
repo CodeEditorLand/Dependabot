@@ -1,24 +1,24 @@
 {
-    "name": "test",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/waltfy/PROTO_TEST.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/waltfy/PROTO_TEST/issues"
-    },
-    "homepage": "https://github.com/waltfy/PROTO_TEST#readme",
-    "dependencies": {
-        "react": "19.0.0",
-        "react-dom": "19.0.0",
-        "fetch-factory": "0.2.1"
-    }
+	"name": "test",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "https://github.com/waltfy/PROTO_TEST#readme",
+	"bugs": {
+		"url": "https://github.com/waltfy/PROTO_TEST/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/waltfy/PROTO_TEST.git"
+	},
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"fetch-factory": "0.2.1",
+		"react": "19.0.0",
+		"react-dom": "19.0.0"
+	}
 }

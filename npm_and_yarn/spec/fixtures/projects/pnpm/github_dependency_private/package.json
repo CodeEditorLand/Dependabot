@@ -1,23 +1,23 @@
 {
-    "name": "Zelcord",
-    "version": "3.3.0",
-    "description": "Zelcord is a custom client designed to enhance your Discord experience while keeping everything lightweight.",
-    "main": "ts-out/main.js",
-    "engines": {
-        "node": ">=18.0.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Zelcord/Zelcord.git"
-    },
-    "author": "smartfrigde",
-    "license": "OSL-3.0",
-    "bugs": {
-        "url": "https://github.com/Zelcord/Zelcord/issues"
-    },
-    "homepage": "https://github.com/Zelcord/Zelcord#readme",
-    "dependencies": {
-        "cross-fetch": "4.1.0",
-        "electron-context-menu": "github:Zelcord/electron-context-menu"
-    }
+	"name": "Zelcord",
+	"version": "3.3.0",
+	"description": "Zelcord is a custom client designed to enhance your Discord experience while keeping everything lightweight.",
+	"homepage": "https://github.com/Zelcord/Zelcord#readme",
+	"bugs": {
+		"url": "https://github.com/Zelcord/Zelcord/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Zelcord/Zelcord.git"
+	},
+	"license": "OSL-3.0",
+	"author": "smartfrigde",
+	"main": "ts-out/main.js",
+	"dependencies": {
+		"cross-fetch": "4.1.0",
+		"electron-context-menu": "github:Zelcord/electron-context-menu"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
 }

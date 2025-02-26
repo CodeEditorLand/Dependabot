@@ -1,15 +1,15 @@
 {
-  "name": "test-repo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "fetch-factory": "0.2.1",
-    "web3": "4.16.0"
-  }
+	"name": "test-repo",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"fetch-factory": "0.2.1",
+		"web3": "4.16.0"
+	}
 }

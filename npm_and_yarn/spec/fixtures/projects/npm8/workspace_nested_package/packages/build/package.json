@@ -1,7 +1,7 @@
 {
-  "name": "package",
-  "version": "0.0.1",
-  "dependencies": {
-    "yargs": "17.7.2"
-  }
+	"name": "package",
+	"version": "0.0.1",
+	"dependencies": {
+		"yargs": "17.7.2"
+	}
 }
