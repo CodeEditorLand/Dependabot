@@ -6,13 +6,13 @@ Yarn and npm support for [`dependabot-core`][core-repo].
 
 1. Start a development shell
 
-  ```
-  $ bin/docker-dev-shell npm_and_yarn
-  ```
+```
+$ bin/docker-dev-shell npm_and_yarn
+```
 
 2. Run tests
-   ```
-   [dependabot-core-dev] ~ $ cd npm_and_yarn && rspec
-   ```
+    ```
+    [dependabot-core-dev] ~ $ cd npm_and_yarn && rspec
+    ```
 
 [core-repo]: https://github.com/dependabot/dependabot-core

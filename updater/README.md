@@ -14,7 +14,7 @@ GitHub network, and so is not generally accessible.
 To work on the Updater, you will need to start a Docker dev shell:
 
 ```zsh
-➜ bin/docker-dev-shell updater  # the docker-dev-shell internally maps 'updater' to the 'bundler' ecosystem image
+➜ bin/docker-dev-shell updater # the docker-dev-shell internally maps 'updater' to the 'bundler' ecosystem image
 [dependabot-core-dev] ~ $ cd dependabot-updater/
 [dependabot-core-dev] ~/dependabot-updater $ bundle
 ```
@@ -40,23 +40,26 @@ scope.
 ```zsh
 # keep secrets from being stored in shell history by prefixing with a space
 export HISTCONTROL=ignorespace
-export  DEPENDABOT_TEST_ACCESS_TOKEN=ghp_xxx
+export DEPENDABOT_TEST_ACCESS_TOKEN=ghp_xxx
 # The DEPENDABOT_TEST_ACCESS_TOKEN will be forwarded to the dev shell container
 ➜ bin/docker-dev-shell bundler
 ```
 
 ### VCR
 
-In order to avoid network calls, we use [VCR](https://github.com/vcr/vcr) to maintain
-fixtures for the remote services we interact with.
+In order to avoid network calls, we use [VCR](https://github.com/vcr/vcr) to
+maintain fixtures for the remote services we interact with.
 
-If you are adding a new test that makes network calls, please ensure you record a new fixture.
+If you are adding a new test that makes network calls, please ensure you record
+a new fixture.
 
-:warning: At time of writing, **our tests will not fail if a fixture is missing**. See: `spec/spec_helper.rb`
+:warning: At time of writing, **our tests will not fail if a fixture is
+missing**. See: `spec/spec_helper.rb`
 
 #### Recording new fixtures
 
-If you've added a new test which has the `vcr: true` metadata, you can record a fixture for just those changes like so:
+If you've added a new test which has the `vcr: true` metadata, you can record a
+fixture for just those changes like so:
 
 ```zsh
 [dependabot-core-dev] ~/dependabot-updater $ VCR=new_episodes bundle exec rspec

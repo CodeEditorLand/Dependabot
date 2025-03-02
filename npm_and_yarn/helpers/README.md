@@ -1,5 +1,4 @@
-Native JavaScript helpers
--------------------------
+## Native JavaScript helpers
 
 This directory contains helper functions for npm and yarn, natively written in
 Javascript so that we can utilize the package managers internal APIs and other

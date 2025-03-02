@@ -23,4 +23,3 @@ input:
 
 **Maintainers**: It is also possible to generate this file from the service,
 refer to internal documentation.
-

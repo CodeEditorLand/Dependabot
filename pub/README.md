@@ -4,30 +4,40 @@ Dart (pub) support for [`dependabot-core`][core-repo].
 
 ### Limitations
 
- - Limited updating of git-dependencies
-   * `dart pub` in general doesn't read versions numbers from git, so upgrade logic is limited to upgrading to what the 'ref' is pointing to.
-   * If you pin to a specific revision in `pubspec.yaml` dependabot will not find upgrades.
-   * If you give a branch in `pubspec.yaml` dependabot will upgrade to the
-     latest revision that branch is pointing to, and update `pubspec.lock`
-     accordingly.
- - Security updates currently bump to the latest version. If the latest version is vulnerable, no update will happen (even if an earlier version could be used). Changing the upgrade strategy to use the minimum non-vulnerable version is tracked in https://github.com/dependabot/dependabot-core/issues/5391.
- - If the version found is ignored (by dependabot config) no update will happen (even if an earlier version could be used)
- - Limited metadata support (just retrieves the repository link).
- - No support for authentication of private package repositories (mostly a configuration issue).
- - `updated_dependencies_after_full_unlock` only allows updating to a later version, if the latest version that is mutually compatible with other dependencies is the latest version of the said package. This is a dependabot limitation.
+- Limited updating of git-dependencies
+    - `dart pub` in general doesn't read versions numbers from git, so upgrade
+      logic is limited to upgrading to what the 'ref' is pointing to.
+    - If you pin to a specific revision in `pubspec.yaml` dependabot will not
+      find upgrades.
+    - If you give a branch in `pubspec.yaml` dependabot will upgrade to the
+      latest revision that branch is pointing to, and update `pubspec.lock`
+      accordingly.
+- Security updates currently bump to the latest version. If the latest version
+  is vulnerable, no update will happen (even if an earlier version could be
+  used). Changing the upgrade strategy to use the minimum non-vulnerable version
+  is tracked in https://github.com/dependabot/dependabot-core/issues/5391.
+- If the version found is ignored (by dependabot config) no update will happen
+  (even if an earlier version could be used)
+- Limited metadata support (just retrieves the repository link).
+- No support for authentication of private package repositories (mostly a
+  configuration issue).
+- `updated_dependencies_after_full_unlock` only allows updating to a later
+  version, if the latest version that is mutually compatible with other
+  dependencies is the latest version of the said package. This is a dependabot
+  limitation.
 
 ### Running locally
 
 1. Start a development shell
 
-  ```
-  $ bin/docker-dev-shell pub
-  ```
+```
+$ bin/docker-dev-shell pub
+```
 
 2. Run tests
-   ```
-   [dependabot-core-dev] ~ $ cd pub && rspec
-   ```
+    ```
+    [dependabot-core-dev] ~ $ cd pub && rspec
+    ```
 
 [core-repo]: https://github.com/dependabot/dependabot-core
 
@@ -36,7 +46,9 @@ Dart (pub) support for [`dependabot-core`][core-repo].
 The `dart pub` repo offers an experimental dependency services interface which
 allows checking for available updates.
 
-It is implemented as helpers/bin/dependency_services.dart, that is mainly a wrapper around the implementation in the [pub client](https://github.com/dart-lang/pub).
+It is implemented as helpers/bin/dependency_services.dart, that is mainly a
+wrapper around the implementation in the
+[pub client](https://github.com/dart-lang/pub).
 
 #### List Dependencies
 
@@ -217,34 +229,35 @@ It is implemented as helpers/bin/dependency_services.dart, that is mainly a wrap
 # Modifies pubspec.yaml and pubspec.lock on disk
 ```
 
-
 The <source-info> is either `null` (no information provided) or a map providing
 details about the package source in a manner specific to the
 package-environment.
 
-For a git dependency it will usually contain the git-url,
-the path inside the repo and the ref. For a repository package it would contain
-the url of the repository.
+For a git dependency it will usually contain the git-url, the path inside the
+repo and the ref. For a repository package it would contain the url of the
+repository.
+
 ```js
 {
   "type": "git" || "hosted" || "path" || "sdk", // Name of the source.
   ... // Other keys are free form json information about the dependency
 }
 ```
+
 ## Detection of Flutter and Dart SDK versions.
 
-`dependency_services` should be run in the context of the right Flutter and
-Dart SDK versions as these will affect package resolution.
+`dependency_services` should be run in the context of the right Flutter and Dart
+SDK versions as these will affect package resolution.
 
 The pub dependabot integration supports the flutter releases on the `stable` and
 `beta`
 [channel](https://github.com/flutter/flutter/wiki/Flutter-build-release-channels).
 Each Flutter release comes with a matching Dart release.
 
-The `helpers/bin/infer_sdk_versions.dart` script will parse the root pubspec, and
-try to determine the right release based on the SDK constraints and the list of
-available releases:
+The `helpers/bin/infer_sdk_versions.dart` script will parse the root pubspec,
+and try to determine the right release based on the SDK constraints and the list
+of available releases:
 
-* The latest stable release that matches the SDK constraints will be chosen
-* If there is no stable release it will choose the newest beta that matches the
-SDK constraints.
+- The latest stable release that matches the SDK constraints will be chosen
+- If there is no stable release it will choose the newest beta that matches the
+  SDK constraints.

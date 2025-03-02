@@ -59,7 +59,8 @@
 
 ## v0.86.6, 20 December 2018
 
-- Git: Raise a helpful error if a submodule path doesn't actually point to asubmodule
+- Git: Raise a helpful error if a submodule path doesn't actually point to
+  asubmodule
 
 ## v0.86.5, 20 December 2018
 
@@ -211,7 +212,8 @@
 
 - Python: Ignore dependencies that we had to insert a version for
 - JS(npm): Raise helpful errer for forbidden missing deps
-- Gradle: Don't consider dependencies that concatenate properties to build a version
+- Gradle: Don't consider dependencies that concatenate properties to build a
+  version
 - Maven: Check distribution type when looking up declaration to update
 
 ## v0.76.10, 6 December 2018
@@ -298,8 +300,8 @@
 
 ## v0.75.119, 2 December 2018
 
-- Add details of new maintainers to PRs (if they are the one that released
-  this JS package)
+- Add details of new maintainers to PRs (if they are the one that released this
+  JS package)
 
 ## v0.75.118, 30 November 2018
 
@@ -324,7 +326,8 @@
 ## v0.75.114, 29 November 2018
 
 - JS: Fix check if install resolved before update
-- JS: Handle versions without peer dependencies in latest_version_of_dep_with_satisfied_peer_reqs
+- JS: Handle versions without peer dependencies in
+  latest_version_of_dep_with_satisfied_peer_reqs
 
 ## v0.75.113, 29 November 2018
 
@@ -874,8 +877,8 @@
 
 ## v0.74.24, 1 November 2018
 
-- Yarn: Fix resolved url in lockfile for dependencies installed from GitHub using the
-  shorthand syntax (without host)
+- Yarn: Fix resolved url in lockfile for dependencies installed from GitHub
+  using the shorthand syntax (without host)
 
 ## v0.74.23, 1 November 2018
 
@@ -937,8 +940,8 @@
 
 ## v0.74.12, 27 October 2018
 
-- Python: Only update poetry dev dependency requirements if the update
-  is required
+- Python: Only update poetry dev dependency requirements if the update is
+  required
 
 ## v0.74.11, 26 October 2018
 
@@ -954,8 +957,8 @@
 
 ## v0.74.8, 25 October 2018
 
-- Go: Add method to look up Go paths without using Go (for environments where
-  we don't have the binaries)
+- Go: Add method to look up Go paths without using Go (for environments where we
+  don't have the binaries)
 
 ## v0.74.7, 25 October 2018
 
@@ -1392,8 +1395,8 @@
 
 ## v0.73.0, 20 September 2018
 
-- BREAKING: Update the base branch of a PR when updating it, if necessary.
-  If you weren't passing a `Source` with a branch when updating PRs which had a
+- BREAKING: Update the base branch of a PR when updating it, if necessary. If
+  you weren't passing a `Source` with a branch when updating PRs which had a
   custom base branch you will now need to
 
 ## v0.72.21, 20 September 2018
@@ -1629,8 +1632,8 @@
 ## v0.70.0, 9 September 2018
 
 - Add support for Elm 0.19
-- Updates the container Dependabot Core uses to v0.1.31 (which includes both
-  Elm 0.18 and Elm 0.19)
+- Updates the container Dependabot Core uses to v0.1.31 (which includes both Elm
+  0.18 and Elm 0.19)
 
 ## v0.69.43, 8 September 2018
 
@@ -2197,8 +2200,8 @@
 
 ## v0.63.17, 30 July 2018
 
-- JS: Revert Yarn upgrade, until https://github.com/yarnpkg/yarn/issues/6174
-  is fixed or handled
+- JS: Revert Yarn upgrade, until https://github.com/yarnpkg/yarn/issues/6174 is
+  fixed or handled
 
 ## v0.63.16, 29 July 2018
 
@@ -2564,8 +2567,8 @@
 
 ## v0.61.41, 28 June 2018
 
-- PHP: Handle composer.json files that ask for nonexistent path dependency
-  repos but don't need them
+- PHP: Handle composer.json files that ask for nonexistent path dependency repos
+  but don't need them
 
 ## v0.61.40, 28 June 2018
 
@@ -3025,7 +3028,8 @@
 
 ## v0.59.6, 23 May 2018
 
-- Ruby: Retry version resolution if a private source may be to blame for a resolvability error
+- Ruby: Retry version resolution if a private source may be to blame for a
+  resolvability error
 - Ruby: Remove unnecessary RuntimeError handling
 
 ## v0.59.5, 23 May 2018
@@ -3227,8 +3231,8 @@
 ## v0.57.0, 12 May 2018
 
 - BREAKING: Expect a Dependabot::Source object as a FileFetcher argument
-- BREAKING: Require Dependabot::Source to be passed to FileParsers
-  (not repo string)
+- BREAKING: Require Dependabot::Source to be passed to FileParsers (not repo
+  string)
 - BREAKING: Require Dependabot::Source as an argument to PR creator and updater
 - Python: Bump pipenv from 11.10.4 to 2018.5.18
 - Allow Dependabot::Source objects to be created with a custom API endpoint
@@ -3729,8 +3733,8 @@
 
 ## v0.54.17, 16 April 2018
 
-- Ruby: Handle resolution error caused by Ruby's CompactIndex occasionally
-  being unavailable
+- Ruby: Handle resolution error caused by Ruby's CompactIndex occasionally being
+  unavailable
 
 ## v0.54.16, 16 April 2018
 
@@ -3817,8 +3821,8 @@
 
 ## v0.53.37, 12 April 2018
 
-- JS: Handle JavaScript::Version being created with a version class
-  (not a string)
+- JS: Handle JavaScript::Version being created with a version class (not a
+  string)
 - Java: Cache latest version in update checker
 
 ## v0.53.36, 12 April 2018
@@ -4122,8 +4126,8 @@
 
 ## v0.51.17, 23 March 2018
 
-- JS: Don't try to downgrade requirement files that have pinned to a
-  post-latest version
+- JS: Don't try to downgrade requirement files that have pinned to a post-latest
+  version
 
 ## v0.51.16, 23 March 2018
 
@@ -4714,8 +4718,8 @@
 
 - BREAKING: Pass `unlock_level` to UpdateCheckers#can_update? and
   UpdateCheckers#updated_dependencies
-- Add a latest_resolvable_version_with_no_unlock method to the UpdateChecker
-  for each language
+- Add a latest_resolvable_version_with_no_unlock method to the UpdateChecker for
+  each language
 
 ## v0.45.5, 7 February 2018
 
@@ -4734,8 +4738,8 @@
 ## v0.45.2, 5 February 2018
 
 - Ruby: Update to newer pre-release versions
-- JS: Raise GitDependenciesNotReachable error for git dependencies we don't
-  have access to
+- JS: Raise GitDependenciesNotReachable error for git dependencies we don't have
+  access to
 
 ## v0.45.1, 30 January 2018
 
@@ -5475,7 +5479,8 @@
 
 - JS: Fix updated_files_regex for Yarn
 - JS: handle updates without a lockfile in FileUpdater
-- JS: support repos without a lockfile in npm parser, and spec support in UpdateChecker
+- JS: support repos without a lockfile in npm parser, and spec support in
+  UpdateChecker
 - JS: support repos without a package-lock.json in npm FileFetcher
 
 ## v0.35.4, 1 December 2017
@@ -5919,8 +5924,8 @@
 
 ## v0.20.15, 06 October 2017
 
-- Don't sanitize python requirement names during parsing. Was causing errors
-  at the FileUpdater stage (since the name no-longer matched the declaration).
+- Don't sanitize python requirement names during parsing. Was causing errors at
+  the FileUpdater stage (since the name no-longer matched the declaration).
 
 ## v0.20.14, 05 October 2017
 
@@ -5964,8 +5969,8 @@
 
 ## v0.20.5, 01 October 2017
 
-- Fetch cascading Python requirement files that aren't specified with a
-  leading `./`
+- Fetch cascading Python requirement files that aren't specified with a leading
+  `./`
 
 ## v0.20.4, 29 September 2017
 
@@ -6016,8 +6021,8 @@
 ## v0.19.7, 25 September 2017
 
 - Suppress Ruby VersionConflict exceptions caused by an update to a git
-  dependency (since the version conflict is only caused by the attempted
-  update, not by anything wrong with the underlying Gemfile/Gemfile.lock)
+  dependency (since the version conflict is only caused by the attempted update,
+  not by anything wrong with the underlying Gemfile/Gemfile.lock)
 
 ## v0.19.6, 25 September 2017
 
@@ -6044,15 +6049,15 @@
 
 ## v0.19.1, 21 September 2017
 
-- Better support for Python constraints files, and a general refactor of
-  Python support
+- Better support for Python constraints files, and a general refactor of Python
+  support
 
 ## v0.19.0, 20 September 2017
 
-- BREAKING: Add source key to dependency requirement attribute, as a
-  required key
-- Use requirement source key to ensure default metadata is only fetched
-  when appropriate
+- BREAKING: Add source key to dependency requirement attribute, as a required
+  key
+- Use requirement source key to ensure default metadata is only fetched when
+  appropriate
 
 ## v0.18.12, 19 September 2017
 
@@ -6251,8 +6256,8 @@
 - Add `.updated_files_regex` to all FileUpdaters
 - Remove `.required_files` from all FileFetchers
 - Add `.required_files_in?` and `required_files_message` to all FileFetchers
-- Remove all `Ruby::Gemspec` classes entirely. Gem bumping behaviour now
-  handled in `Ruby::Bundler`
+- Remove all `Ruby::Gemspec` classes entirely. Gem bumping behaviour now handled
+  in `Ruby::Bundler`
 
 ## v0.14.6, 15 August 2017
 
@@ -6360,8 +6365,8 @@
 ## v0.10.6, 7 July 2017
 
 - Fetch old commit message when updating a PR. Previously we would try to
-  rebuild the commit message from the PR message, but that often caused us
-  to include extra, irrelevant details.
+  rebuild the commit message from the PR message, but that often caused us to
+  include extra, irrelevant details.
 
 ## v0.10.5, 7 July 2017
 
@@ -6369,8 +6374,8 @@
 
 ## v0.10.4, 7 July 2017
 
-- Avoid using SSH to fetch dependencies - always use HTTPS. Ensures the
-  GitHub credentials we pass to Bundler are used.
+- Avoid using SSH to fetch dependencies - always use HTTPS. Ensures the GitHub
+  credentials we pass to Bundler are used.
 
 ## v0.10.3, 7 July 2017
 

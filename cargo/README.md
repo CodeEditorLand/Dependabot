@@ -6,13 +6,13 @@ Rust (Cargo) support for [`dependabot-core`][core-repo].
 
 1. Start a development shell
 
-  ```
-  $ bin/docker-dev-shell cargo
-  ```
+```
+$ bin/docker-dev-shell cargo
+```
 
 2. Run tests
-   ```
-   [dependabot-core-dev] ~ $ cd cargo && rspec
-   ```
+    ```
+    [dependabot-core-dev] ~ $ cd cargo && rspec
+    ```
 
 [core-repo]: https://github.com/dependabot/dependabot-core

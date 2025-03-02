@@ -1,145 +1,147 @@
-## Rails 5.2.1.1 (November 27, 2018) ##
+## Rails 5.2.1.1 (November 27, 2018)
 
-*   No changes.
+- No changes.
 
+## Rails 5.2.1 (August 07, 2018)
 
-## Rails 5.2.1 (August 07, 2018) ##
-
-*   PostgreSQL: Support new relkind for partitioned tables.
+- PostgreSQL: Support new relkind for partitioned tables.
 
     Fixes #33008.
 
-    *Yannick Schutz*
+    _Yannick Schutz_
 
-*   Rollback parent transaction when children fails to update.
+- Rollback parent transaction when children fails to update.
 
-    *Guillaume Malette*
+    _Guillaume Malette_
 
-*   Fix default value for MySQL time types with specified precision.
+- Fix default value for MySQL time types with specified precision.
 
-    *Nikolay Kondratyev*
+    _Nikolay Kondratyev_
 
-*   Fix `touch` option to behave consistently with `Persistence#touch` method.
+- Fix `touch` option to behave consistently with `Persistence#touch` method.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix `save` in `after_create_commit` won't invoke extra `after_create_commit`.
+- Fix `save` in `after_create_commit` won't invoke extra `after_create_commit`.
 
     Fixes #32831.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix logic on disabling commit callbacks so they are not called unexpectedly when errors occur.
+- Fix logic on disabling commit callbacks so they are not called unexpectedly
+  when errors occur.
 
-    *Brian Durand*
+    _Brian Durand_
 
-*   Fix parent record should not get saved with duplicate children records.
+- Fix parent record should not get saved with duplicate children records.
 
     Fixes #32940.
 
-    *Santosh Wadghule*
+    _Santosh Wadghule_
 
-*   Fix that association's after_touch is not called with counter cache.
+- Fix that association's after_touch is not called with counter cache.
 
     Fixes #31559.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   `becomes` should clear the mutation tracker which is created in `after_initialize`.
+- `becomes` should clear the mutation tracker which is created in
+  `after_initialize`.
 
     Fixes #32867.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Allow a belonging to parent object to be created from a new record.
+- Allow a belonging to parent object to be created from a new record.
 
-    *Jolyon Pawlyn*
+    _Jolyon Pawlyn_
 
-*   Fix that building record with assigning multiple has_one associations
-    wrongly persists through record.
+- Fix that building record with assigning multiple has_one associations wrongly
+  persists through record.
 
     Fixes #32511.
 
-    *Sam DeCesare*
+    _Sam DeCesare_
 
-*   Fix relation merging when one of the relations is going to skip the
-    query cache.
+- Fix relation merging when one of the relations is going to skip the query
+  cache.
 
-    *James Williams*
+    _James Williams_
 
+## Rails 5.2.0 (April 09, 2018)
 
-## Rails 5.2.0 (April 09, 2018) ##
+- MySQL: Support mysql2 0.5.x.
 
-*   MySQL: Support mysql2 0.5.x.
+    _Aaron Stone_
 
-    *Aaron Stone*
+- Apply time column precision on assignment.
 
-*   Apply time column precision on assignment.
-
-    PR #20317 changed the behavior of datetime columns so that when they
-    have a specified precision then on assignment the value is rounded to
-    that precision. This behavior is now applied to time columns as well.
+    PR #20317 changed the behavior of datetime columns so that when they have a
+    specified precision then on assignment the value is rounded to that
+    precision. This behavior is now applied to time columns as well.
 
     Fixes #30301.
 
-    *Andrew White*
+    _Andrew White_
 
-*   Normalize time column values for SQLite database.
+- Normalize time column values for SQLite database.
 
     For legacy reasons, time columns in SQLite are stored as full datetimes
     because until #24542 the quoting for time columns didn't remove the date
-    component. To ensure that values are consistent we now normalize the
-    date component to 2001-01-01 on reading and writing.
+    component. To ensure that values are consistent we now normalize the date
+    component to 2001-01-01 on reading and writing.
 
-    *Andrew White*
+    _Andrew White_
 
-*   Ensure that the date component is removed when quoting times.
+- Ensure that the date component is removed when quoting times.
 
     PR #24542 altered the quoting for time columns so that the date component
-    was removed however it only removed it when it was 2001-01-01. Now the
-    date component is removed irrespective of what the date is.
+    was removed however it only removed it when it was 2001-01-01. Now the date
+    component is removed irrespective of what the date is.
 
-    *Andrew White*
+    _Andrew White_
 
-*   Fix `dependent: :destroy` issue for has_one/belongs_to relationship where
-    the parent class was getting deleted when the child was not.
+- Fix `dependent: :destroy` issue for has_one/belongs_to relationship where the
+  parent class was getting deleted when the child was not.
 
     Fixes #32022.
 
-    *Fernando Gorodscy*
+    _Fernando Gorodscy_
 
-*   Whitelist `NULLS FIRST` and `NULLS LAST` in order clauses too.
+- Whitelist `NULLS FIRST` and `NULLS LAST` in order clauses too.
 
-    *Xavier Noria*
+    _Xavier Noria_
 
-*   Fix that after commit callbacks on update does not triggered when optimistic locking is enabled.
+- Fix that after commit callbacks on update does not triggered when optimistic
+  locking is enabled.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix `#columns_for_distinct` of MySQL and PostgreSQL to make
-    `ActiveRecord::FinderMethods#limited_ids_for` use correct primary key values
-    even if `ORDER BY` columns include other table's primary key.
+- Fix `#columns_for_distinct` of MySQL and PostgreSQL to make
+  `ActiveRecord::FinderMethods#limited_ids_for` use correct primary key values
+  even if `ORDER BY` columns include other table's primary key.
 
     Fixes #28364.
 
-    *Takumi Kagiyama*
+    _Takumi Kagiyama_
 
-*   Make `reflection.klass` raise if `polymorphic?` not to be misused.
+- Make `reflection.klass` raise if `polymorphic?` not to be misused.
 
     Fixes #31876.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   PostgreSQL: Allow pg-1.0 gem to be used with Active Record.
+- PostgreSQL: Allow pg-1.0 gem to be used with Active Record.
 
-    *Lars Kanis*
+    _Lars Kanis_
 
-*   Deprecate `expand_hash_conditions_for_aggregates` without replacement.
-    Using a `Relation` for performing queries is the prefered API.
+- Deprecate `expand_hash_conditions_for_aggregates` without replacement. Using a
+  `Relation` for performing queries is the prefered API.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix not expanded problem when passing an Array object as argument to the where method using `composed_of` column.
+- Fix not expanded problem when passing an Array object as argument to the where
+  method using `composed_of` column.
 
     ```
     david_balance = customers(:david).balance
@@ -151,39 +153,40 @@
 
     Fixes #31723.
 
-    *Yutaro Kanagawa*
+    _Yutaro Kanagawa_
 
-*   Fix `count(:all)` with eager loading and having an order other than the driving table.
+- Fix `count(:all)` with eager loading and having an order other than the
+  driving table.
 
     Fixes #31783.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Clear the transaction state when an Active Record object is duped.
+- Clear the transaction state when an Active Record object is duped.
 
     Fixes #31670.
 
-    *Yuriy Ustushenko*
+    _Yuriy Ustushenko_
 
-*   Support for PostgreSQL foreign tables.
+- Support for PostgreSQL foreign tables.
 
-    *fatkodima*
+    _fatkodima_
 
-*   Fix relation merger issue with `left_outer_joins`.
+- Fix relation merger issue with `left_outer_joins`.
 
-    *Mehmet Emin İNAÇ*
+    _Mehmet Emin İNAÇ_
 
-*   Don't allow destroyed object mutation after `save` or `save!` is called.
+- Don't allow destroyed object mutation after `save` or `save!` is called.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Take into account association conditions when deleting through records.
+- Take into account association conditions when deleting through records.
 
     Fixes #18424.
 
-    *Piotr Jakubowski*
+    _Piotr Jakubowski_
 
-*   Fix nested `has_many :through` associations on unpersisted parent instances.
+- Fix nested `has_many :through` associations on unpersisted parent instances.
 
     For example, if you have
 
@@ -219,51 +222,50 @@
 
     Fixes #16313.
 
-    *Zoltan Kiss*
+    _Zoltan Kiss_
 
-*   Fixed inconsistency with `first(n)` when used with `limit()`.
-    The `first(n)` finder now respects the `limit()`, making it consistent
-    with `relation.to_a.first(n)`, and also with the behavior of `last(n)`.
+- Fixed inconsistency with `first(n)` when used with `limit()`. The `first(n)`
+  finder now respects the `limit()`, making it consistent with
+  `relation.to_a.first(n)`, and also with the behavior of `last(n)`.
 
     Fixes #23979.
 
-    *Brian Christian*
+    _Brian Christian_
 
-*   Use `count(:all)` in `HasManyAssociation#count_records` to prevent invalid
-    SQL queries for association counting.
+- Use `count(:all)` in `HasManyAssociation#count_records` to prevent invalid SQL
+  queries for association counting.
 
-    *Klas Eskilson*
+    _Klas Eskilson_
 
-*   Fix to invoke callbacks when using `update_attribute`.
+- Fix to invoke callbacks when using `update_attribute`.
 
-    *Mike Busch*
+    _Mike Busch_
 
-*   Fix `count(:all)` to correctly work `distinct` with custom SELECT list.
+- Fix `count(:all)` to correctly work `distinct` with custom SELECT list.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Using subselect for `delete_all` with `limit` or `offset`.
+- Using subselect for `delete_all` with `limit` or `offset`.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Undefine attribute methods on descendants when resetting column
-    information.
+- Undefine attribute methods on descendants when resetting column information.
 
-    *Chris Salzberg*
+    _Chris Salzberg_
 
-*   Log database query callers.
+- Log database query callers.
 
-    Add `verbose_query_logs` configuration option to display the caller
-    of database queries in the log to facilitate N+1 query resolution
-    and other debugging.
+    Add `verbose_query_logs` configuration option to display the caller of
+    database queries in the log to facilitate N+1 query resolution and other
+    debugging.
 
     Enabled in development only for new and upgraded applications. Not
-    recommended for use in the production environment since it relies
-    on Ruby's `Kernel#caller_locations` which is fairly slow.
+    recommended for use in the production environment since it relies on Ruby's
+    `Kernel#caller_locations` which is fairly slow.
 
-    *Olivier Lacan*
+    _Olivier Lacan_
 
-*   Fix conflicts `counter_cache` with `touch: true` by optimistic locking.
+- Fix conflicts `counter_cache` with `touch: true` by optimistic locking.
 
     ```
     # create_table :posts do |t|
@@ -283,6 +285,7 @@
     ```
 
     Before:
+
     ```
     post = Post.create!
     # => begin transaction
@@ -316,6 +319,7 @@
     ```
 
     After:
+
     ```
     post = Post.create!
     # => begin transaction
@@ -344,144 +348,150 @@
 
     Fixes #31199.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Add support for PostgreSQL operator classes to `add_index`.
+- Add support for PostgreSQL operator classes to `add_index`.
 
     Example:
 
         add_index :users, :name, using: :gist, opclass: { name: :gist_trgm_ops }
 
-    *Greg Navis*
+    _Greg Navis_
 
-*   Don't allow scopes to be defined which conflict with instance methods on `Relation`.
+- Don't allow scopes to be defined which conflict with instance methods on
+  `Relation`.
 
     Fixes #31120.
 
-    *kinnrot*
+    _kinnrot_
 
-*   Add new error class `QueryCanceled` which will be raised
-    when canceling statement due to user request.
+- Add new error class `QueryCanceled` which will be raised when canceling
+  statement due to user request.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Add `#up_only` to database migrations for code that is only relevant when
-    migrating up, e.g. populating a new column.
+- Add `#up_only` to database migrations for code that is only relevant when
+  migrating up, e.g. populating a new column.
 
-    *Rich Daley*
+    _Rich Daley_
 
-*   Require raw SQL fragments to be explicitly marked when used in
-    relation query methods.
+- Require raw SQL fragments to be explicitly marked when used in relation query
+  methods.
 
     Before:
+
     ```
     Article.order("LENGTH(title)")
     ```
 
     After:
+
     ```
     Article.order(Arel.sql("LENGTH(title)"))
     ```
 
-    This prevents SQL injection if applications use the [strongly
-    discouraged] form `Article.order(params[:my_order])`, under the
-    mistaken belief that only column names will be accepted.
+    This prevents SQL injection if applications use the [strongly discouraged]
+    form `Article.order(params[:my_order])`, under the mistaken belief that only
+    column names will be accepted.
 
-    Raw SQL strings will now cause a deprecation warning, which will
-    become an UnknownAttributeReference error in Rails 6.0. Applications
-    can opt in to the future behavior by setting `allow_unsafe_raw_sql`
-    to `:disabled`.
+    Raw SQL strings will now cause a deprecation warning, which will become an
+    UnknownAttributeReference error in Rails 6.0. Applications can opt in to the
+    future behavior by setting `allow_unsafe_raw_sql` to `:disabled`.
 
-    Common and judged-safe string values (such as simple column
-    references) are unaffected:
+    Common and judged-safe string values (such as simple column references) are
+    unaffected:
+
     ```
     Article.order("title DESC")
     ```
 
-    *Ben Toews*
+    _Ben Toews_
 
-*   `update_all` will now pass its values to `Type#cast` before passing them to
-    `Type#serialize`. This means that `update_all(foo: 'true')` will properly
-    persist a boolean.
+- `update_all` will now pass its values to `Type#cast` before passing them to
+  `Type#serialize`. This means that `update_all(foo: 'true')` will properly
+  persist a boolean.
 
-    *Sean Griffin*
+    _Sean Griffin_
 
-*   Add new error class `StatementTimeout` which will be raised
-    when statement timeout exceeded.
+- Add new error class `StatementTimeout` which will be raised when statement
+  timeout exceeded.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix `bin/rails db:migrate` with specified `VERSION`.
-    `bin/rails db:migrate` with empty VERSION behaves as without `VERSION`.
-    Check a format of `VERSION`: Allow a migration version number
-    or name of a migration file. Raise error if format of `VERSION` is invalid.
-    Raise error if target migration doesn't exist.
+- Fix `bin/rails db:migrate` with specified `VERSION`. `bin/rails db:migrate`
+  with empty VERSION behaves as without `VERSION`. Check a format of `VERSION`:
+  Allow a migration version number or name of a migration file. Raise error if
+  format of `VERSION` is invalid. Raise error if target migration doesn't exist.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Fixed a bug where column orders for an index weren't written to
-    `db/schema.rb` when using the sqlite adapter.
+- Fixed a bug where column orders for an index weren't written to `db/schema.rb`
+  when using the sqlite adapter.
 
     Fixes #30902.
 
-    *Paul Kuruvilla*
+    _Paul Kuruvilla_
 
-*   Remove deprecated method `#sanitize_conditions`.
+- Remove deprecated method `#sanitize_conditions`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated method `#scope_chain`.
+- Remove deprecated method `#scope_chain`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated configuration `.error_on_ignored_order_or_limit`.
+- Remove deprecated configuration `.error_on_ignored_order_or_limit`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated arguments from `#verify!`.
+- Remove deprecated arguments from `#verify!`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated argument `name` from `#indexes`.
+- Remove deprecated argument `name` from `#indexes`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated method `ActiveRecord::Migrator.schema_migrations_table_name`.
+- Remove deprecated method
+  `ActiveRecord::Migrator.schema_migrations_table_name`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated method `supports_primary_key?`.
+- Remove deprecated method `supports_primary_key?`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated method `supports_migrations?`.
+- Remove deprecated method `supports_migrations?`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated methods `initialize_schema_migrations_table` and `initialize_internal_metadata_table`.
+- Remove deprecated methods `initialize_schema_migrations_table` and
+  `initialize_internal_metadata_table`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Raises when calling `lock!` in a dirty record.
+- Raises when calling `lock!` in a dirty record.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated support to passing a class to `:class_name` on associations.
+- Remove deprecated support to passing a class to `:class_name` on associations.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated argument `default` from `index_name_exists?`.
+- Remove deprecated argument `default` from `index_name_exists?`.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Remove deprecated support to `quoted_id` when typecasting an Active Record object.
+- Remove deprecated support to `quoted_id` when typecasting an Active Record
+  object.
 
-    *Rafael Mendonça França*
+    _Rafael Mendonça França_
 
-*   Fix `bin/rails db:setup` and `bin/rails db:test:prepare` create wrong
-    ar_internal_metadata's data for a test database.
+- Fix `bin/rails db:setup` and `bin/rails db:test:prepare` create wrong
+  ar_internal_metadata's data for a test database.
 
     Before:
+
     ```
     $ RAILS_ENV=test rails dbconsole
     > SELECT * FROM ar_internal_metadata;
@@ -490,6 +500,7 @@
     ```
 
     After:
+
     ```
     $ RAILS_ENV=test rails dbconsole
     > SELECT * FROM ar_internal_metadata;
@@ -499,33 +510,33 @@
 
     Fixes #26731.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Fix longer sequence name detection for serial columns.
+- Fix longer sequence name detection for serial columns.
 
     Fixes #28332.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   MySQL: Don't lose `auto_increment: true` in the `db/schema.rb`.
+- MySQL: Don't lose `auto_increment: true` in the `db/schema.rb`.
 
     Fixes #30894.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix `COUNT(DISTINCT ...)` for `GROUP BY` with `ORDER BY` and `LIMIT`.
+- Fix `COUNT(DISTINCT ...)` for `GROUP BY` with `ORDER BY` and `LIMIT`.
 
     Fixes #30886.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   PostgreSQL `tsrange` now preserves subsecond precision.
+- PostgreSQL `tsrange` now preserves subsecond precision.
 
     PostgreSQL 9.1+ introduced range types, and Rails added support for using
     this datatype in Active Record. However, the serialization of
-    `PostgreSQL::OID::Range` was incomplete, because it did not properly
-    cast the bounds that make up the range. This led to subseconds being
-    dropped in SQL commands:
+    `PostgreSQL::OID::Range` was incomplete, because it did not properly cast
+    the bounds that make up the range. This led to subseconds being dropped in
+    SQL commands:
 
     Before:
 
@@ -537,79 +548,81 @@
         connection.type_cast(tsrange.serialize(range_value))
         # => "[2010-01-01 13:30:00.670277,2011-02-02 19:30:00.745125)"
 
-    *Thomas Cannon*
+    _Thomas Cannon_
 
-*   Passing a `Set` to `Relation#where` now behaves the same as passing an
-    array.
+- Passing a `Set` to `Relation#where` now behaves the same as passing an array.
 
-    *Sean Griffin*
+    _Sean Griffin_
 
-*   Use given algorithm while removing index from database.
+- Use given algorithm while removing index from database.
 
     Fixes #24190.
 
-    *Mehmet Emin İNAÇ*
+    _Mehmet Emin İNAÇ_
 
-*   Update payload names for `sql.active_record` instrumentation to be
-    more descriptive.
+- Update payload names for `sql.active_record` instrumentation to be more
+  descriptive.
 
     Fixes #30586.
 
-    *Jeremy Green*
+    _Jeremy Green_
 
-*   Add new error class `LockWaitTimeout` which will be raised
-    when lock wait timeout exceeded.
+- Add new error class `LockWaitTimeout` which will be raised when lock wait
+  timeout exceeded.
 
-    *Gabriel Courtemanche*
+    _Gabriel Courtemanche_
 
-*   Remove deprecated `#migration_keys`.
+- Remove deprecated `#migration_keys`.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Automatically guess the inverse associations for STI.
+- Automatically guess the inverse associations for STI.
 
-    *Yuichiro Kaneko*
+    _Yuichiro Kaneko_
 
-*   Ensure `sum` honors `distinct` on `has_many :through` associations.
+- Ensure `sum` honors `distinct` on `has_many :through` associations.
 
     Fixes #16791.
 
-    *Aaron Wortham*
+    _Aaron Wortham_
 
-*   Add `binary` fixture helper method.
+- Add `binary` fixture helper method.
 
-    *Atsushi Yoshida*
+    _Atsushi Yoshida_
 
-*   When using `Relation#or`, extract the common conditions and put them before the OR condition.
+- When using `Relation#or`, extract the common conditions and put them before
+  the OR condition.
 
-    *Maxime Handfield Lapointe*
+    _Maxime Handfield Lapointe_
 
-*   `Relation#or` now accepts two relations who have different values for
-    `references` only, as `references` can be implicitly called by `where`.
+- `Relation#or` now accepts two relations who have different values for
+  `references` only, as `references` can be implicitly called by `where`.
 
     Fixes #29411.
 
-    *Sean Griffin*
+    _Sean Griffin_
 
-*   `ApplicationRecord` is no longer generated when generating models. If you
-    need to generate it, it can be created with `rails g application_record`.
+- `ApplicationRecord` is no longer generated when generating models. If you need
+  to generate it, it can be created with `rails g application_record`.
 
-    *Lisa Ugray*
+    _Lisa Ugray_
 
-*   Fix `COUNT(DISTINCT ...)` with `ORDER BY` and `LIMIT` to keep the existing select list.
+- Fix `COUNT(DISTINCT ...)` with `ORDER BY` and `LIMIT` to keep the existing
+  select list.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   When a `has_one` association is destroyed by `dependent: destroy`,
-    `destroyed_by_association` will now be set to the reflection, matching the
-    behaviour of `has_many` associations.
+- When a `has_one` association is destroyed by `dependent: destroy`,
+  `destroyed_by_association` will now be set to the reflection, matching the
+  behaviour of `has_many` associations.
 
-    *Lisa Ugray*
+    _Lisa Ugray_
 
-*   Fix `unscoped(where: [columns])` removing the wrong bind values.
+- Fix `unscoped(where: [columns])` removing the wrong bind values.
 
-    When the `where` is called on a relation after a `or`, unscoping the column of that later `where` removed
-    bind values used by the `or` instead. (possibly other cases too)
+    When the `where` is called on a relation after a `or`, unscoping the column
+    of that later `where` removed bind values used by the `or` instead.
+    (possibly other cases too)
 
     ```
     Post.where(id: 1).or(Post.where(id: 2)).where(foo: 3).unscope(where: :foo).to_sql
@@ -619,86 +632,89 @@
     #     SELECT "posts".* FROM "posts" WHERE ("posts"."id" = 1 OR "posts"."id" = 2)
     ```
 
-    *Maxime Handfield Lapointe*
+    _Maxime Handfield Lapointe_
 
-*   Values constructed using multi-parameter assignment will now use the
-    post-type-cast value for rendering in single-field form inputs.
+- Values constructed using multi-parameter assignment will now use the
+  post-type-cast value for rendering in single-field form inputs.
 
-    *Sean Griffin*
+    _Sean Griffin_
 
-*   `Relation#joins` is no longer affected by the target model's
-    `current_scope`, with the exception of `unscoped`.
+- `Relation#joins` is no longer affected by the target model's `current_scope`,
+  with the exception of `unscoped`.
 
     Fixes #29338.
 
-    *Sean Griffin*
+    _Sean Griffin_
 
-*   Change sqlite3 boolean serialization to use 1 and 0.
+- Change sqlite3 boolean serialization to use 1 and 0.
 
     SQLite natively recognizes 1 and 0 as true and false, but does not natively
     recognize 't' and 'f' as was previously serialized.
 
-    This change in serialization requires a migration of stored boolean data
-    for SQLite databases, so it's implemented behind a configuration flag
-    whose default false value is deprecated.
+    This change in serialization requires a migration of stored boolean data for
+    SQLite databases, so it's implemented behind a configuration flag whose
+    default false value is deprecated.
 
-    *Lisa Ugray*
+    _Lisa Ugray_
 
-*   Skip query caching when working with batches of records (`find_each`, `find_in_batches`,
-    `in_batches`).
+- Skip query caching when working with batches of records (`find_each`,
+  `find_in_batches`, `in_batches`).
 
-    Previously, records would be fetched in batches, but all records would be retained in memory
-    until the end of the request or job.
+    Previously, records would be fetched in batches, but all records would be
+    retained in memory until the end of the request or job.
 
-    *Eugene Kenny*
+    _Eugene Kenny_
 
-*   Prevent errors raised by `sql.active_record` notification subscribers from being converted into
-    `ActiveRecord::StatementInvalid` exceptions.
+- Prevent errors raised by `sql.active_record` notification subscribers from
+  being converted into `ActiveRecord::StatementInvalid` exceptions.
 
-    *Dennis Taylor*
+    _Dennis Taylor_
 
-*   Fix eager loading/preloading association with scope including joins.
+- Fix eager loading/preloading association with scope including joins.
 
     Fixes #28324.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix transactions to apply state to child transactions.
+- Fix transactions to apply state to child transactions.
 
-    Previously, if you had a nested transaction and the outer transaction was rolledback, the record from the
-    inner transaction would still be marked as persisted.
+    Previously, if you had a nested transaction and the outer transaction was
+    rolledback, the record from the inner transaction would still be marked as
+    persisted.
 
-    This change fixes that by applying the state of the parent transaction to the child transaction when the
-    parent transaction is rolledback. This will correctly mark records from the inner transaction as not persisted.
+    This change fixes that by applying the state of the parent transaction to
+    the child transaction when the parent transaction is rolledback. This will
+    correctly mark records from the inner transaction as not persisted.
 
-    *Eileen M. Uchitelle*, *Aaron Patterson*
+    _Eileen M. Uchitelle_, _Aaron Patterson_
 
-*   Deprecate `set_state` method in `TransactionState`.
+- Deprecate `set_state` method in `TransactionState`.
 
-    Deprecated the `set_state` method in favor of setting the state via specific methods. If you need to mark the
-    state of the transaction you can now use `rollback!`, `commit!` or `nullify!` instead of
-    `set_state(:rolledback)`, `set_state(:committed)`, or `set_state(nil)`.
+    Deprecated the `set_state` method in favor of setting the state via specific
+    methods. If you need to mark the state of the transaction you can now use
+    `rollback!`, `commit!` or `nullify!` instead of `set_state(:rolledback)`,
+    `set_state(:committed)`, or `set_state(nil)`.
 
-    *Eileen M. Uchitelle*, *Aaron Patterson*
+    _Eileen M. Uchitelle_, _Aaron Patterson_
 
-*   Deprecate delegating to `arel` in `Relation`.
+- Deprecate delegating to `arel` in `Relation`.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Query cache was unavailable when entering the `ActiveRecord::Base.cache` block
-    without being connected.
+- Query cache was unavailable when entering the `ActiveRecord::Base.cache` block
+  without being connected.
 
-    *Tsukasa Oishi*
+    _Tsukasa Oishi_
 
-*   Previously, when building records using a `has_many :through` association,
-    if the child records were deleted before the parent was saved, they would
-    still be persisted. Now, if child records are deleted before the parent is saved
-    on a `has_many :through` association, the child records will not be persisted.
+- Previously, when building records using a `has_many :through` association, if
+  the child records were deleted before the parent was saved, they would still
+  be persisted. Now, if child records are deleted before the parent is saved on
+  a `has_many :through` association, the child records will not be persisted.
 
-    *Tobias Kraze*
+    _Tobias Kraze_
 
-*   Merging two relations representing nested joins no longer transforms the joins of
-    the merged relation into LEFT OUTER JOIN.
+- Merging two relations representing nested joins no longer transforms the joins
+  of the merged relation into LEFT OUTER JOIN.
 
     Example:
 
@@ -711,83 +727,92 @@
     #=> SELECT ... FROM authors INNER JOIN posts ON ... INNER JOIN comments ON...
     ```
 
-    *Maxime Handfield Lapointe*
+    _Maxime Handfield Lapointe_
 
-*   `ActiveRecord::Persistence#touch` does not work well when optimistic locking enabled and
-    `locking_column`, without default value, is null in the database.
+- `ActiveRecord::Persistence#touch` does not work well when optimistic locking
+  enabled and `locking_column`, without default value, is null in the database.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Fix destroying existing object does not work well when optimistic locking enabled and
-    `locking_column` is null in the database.
+- Fix destroying existing object does not work well when optimistic locking
+  enabled and `locking_column` is null in the database.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Use bulk INSERT to insert fixtures for better performance.
+- Use bulk INSERT to insert fixtures for better performance.
 
-    *Kir Shatrov*
+    _Kir Shatrov_
 
-*   Prevent creation of bind param if casted value is nil.
+- Prevent creation of bind param if casted value is nil.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Deprecate passing arguments and block at the same time to `count` and `sum` in `ActiveRecord::Calculations`.
+- Deprecate passing arguments and block at the same time to `count` and `sum` in
+  `ActiveRecord::Calculations`.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Loading model schema from database is now thread-safe.
+- Loading model schema from database is now thread-safe.
 
     Fixes #28589.
 
-    *Vikrant Chaudhary*, *David Abdemoulaie*
+    _Vikrant Chaudhary_, _David Abdemoulaie_
 
-*   Add `ActiveRecord::Base#cache_version` to support recyclable cache keys via the new versioned entries
-    in `ActiveSupport::Cache`. This also means that `ActiveRecord::Base#cache_key` will now return a stable key
-    that does not include a timestamp any more.
+- Add `ActiveRecord::Base#cache_version` to support recyclable cache keys via
+  the new versioned entries in `ActiveSupport::Cache`. This also means that
+  `ActiveRecord::Base#cache_key` will now return a stable key that does not
+  include a timestamp any more.
 
-    NOTE: This feature is turned off by default, and `#cache_key` will still return cache keys with timestamps
-    until you set `ActiveRecord::Base.cache_versioning = true`. That's the setting for all new apps on Rails 5.2+
+    NOTE: This feature is turned off by default, and `#cache_key` will still
+    return cache keys with timestamps until you set
+    `ActiveRecord::Base.cache_versioning = true`. That's the setting for all new
+    apps on Rails 5.2+
 
-    *DHH*
+    _DHH_
 
-*   Respect `SchemaDumper.ignore_tables` in rake tasks for databases structure dump.
+- Respect `SchemaDumper.ignore_tables` in rake tasks for databases structure
+  dump.
 
-    *Rusty Geldmacher*, *Guillermo Iguaran*
+    _Rusty Geldmacher_, _Guillermo Iguaran_
 
-*   Add type caster to `RuntimeReflection#alias_name`.
+- Add type caster to `RuntimeReflection#alias_name`.
 
     Fixes #28959.
 
-    *Jon Moss*
+    _Jon Moss_
 
-*   Deprecate `supports_statement_cache?`.
+- Deprecate `supports_statement_cache?`.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Raise error `UnknownMigrationVersionError` on the movement of migrations
-    when the current migration does not exist.
+- Raise error `UnknownMigrationVersionError` on the movement of migrations when
+  the current migration does not exist.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Fix `bin/rails db:forward` first migration.
+- Fix `bin/rails db:forward` first migration.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   Support Descending Indexes for MySQL.
+- Support Descending Indexes for MySQL.
 
-    MySQL 8.0.1 and higher supports descending indexes: `DESC` in an index definition is no longer ignored.
-    See https://dev.mysql.com/doc/refman/8.0/en/descending-indexes.html.
+    MySQL 8.0.1 and higher supports descending indexes: `DESC` in an index
+    definition is no longer ignored. See
+    https://dev.mysql.com/doc/refman/8.0/en/descending-indexes.html.
 
-    *Ryuta Kamizono*
+    _Ryuta Kamizono_
 
-*   Fix inconsistency with changed attributes when overriding Active Record attribute reader.
+- Fix inconsistency with changed attributes when overriding Active Record
+  attribute reader.
 
-    *bogdanvlviv*
+    _bogdanvlviv_
 
-*   When calling the dynamic fixture accessor method with no arguments, it now returns all fixtures of this type.
-    Previously this method always returned an empty array.
+- When calling the dynamic fixture accessor method with no arguments, it now
+  returns all fixtures of this type. Previously this method always returned an
+  empty array.
 
-    *Kevin McPhillips*
+    _Kevin McPhillips_
 
-
-Please check [5-1-stable](https://github.com/rails/rails/blob/5-1-stable/activerecord/CHANGELOG.md) for previous changes.
+Please check
+[5-1-stable](https://github.com/rails/rails/blob/5-1-stable/activerecord/CHANGELOG.md)
+for previous changes.

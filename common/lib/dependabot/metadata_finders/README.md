@@ -10,7 +10,7 @@ supports.
 Each `Dependabot::MetadataFinders` class exposes the following methods:
 
 | Method                | Description                                                                                 |
-|-----------------------|---------------------------------------------------------------------------------------------|
+| --------------------- | ------------------------------------------------------------------------------------------- |
 | `#source_url`         | A link to the source data for the dependency.                                               |
 | `#homepage_url`       | A link to the homepage for the dependency.                                                  |
 | `#commits_url`        | A link to a commit diff between the previous version of the dependency and the new version. |
@@ -43,11 +43,10 @@ puts "Changelog for #{dependency.name} is at #{metadata_finder.changelog_url}"
 All new metadata finders should inherit from `Dependabot::MetadataFinders::Base`
 and implement the following methods:
 
-| Method                 | Description             |
-|------------------------|-------------------------|
-| `#look_up_source`      | Private method that returns a `Dependabot::Source` object. Generally the source details are extracted from a source code URL provided by the language's dependency registry, but sometimes it's already available from parsing the dependency file. |
+| Method            | Description                                                                                                                                                                                                                                         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `#look_up_source` | Private method that returns a `Dependabot::Source` object. Generally the source details are extracted from a source code URL provided by the language's dependency registry, but sometimes it's already available from parsing the dependency file. |
 
 To ensure the above are implemented, you should include
 `it_behaves_like "a dependency metadata finder"` in your specs for the new
 metadata finder.
-

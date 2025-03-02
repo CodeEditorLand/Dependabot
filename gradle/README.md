@@ -6,13 +6,13 @@ Gradle support for [`dependabot-core`][core-repo].
 
 1. Start a development shell
 
-  ```
-  $ bin/docker-dev-shell gradle
-  ```
+```
+$ bin/docker-dev-shell gradle
+```
 
 2. Run tests
-   ```
-   [dependabot-core-dev] ~ $ cd gradle && rspec
-   ```
+    ```
+    [dependabot-core-dev] ~ $ cd gradle && rspec
+    ```
 
 [core-repo]: https://github.com/dependabot/dependabot-core

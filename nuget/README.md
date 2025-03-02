@@ -6,13 +6,13 @@ NuGet support for [`dependabot-core`][core-repo].
 
 1. Start a development shell
 
-  ```
-  $ bin/docker-dev-shell nuget
-  ```
+```
+$ bin/docker-dev-shell nuget
+```
 
 2. Run tests
-   ```
-   [dependabot-core-dev] ~ $ cd nuget && rspec
-   ```
+    ```
+    [dependabot-core-dev] ~ $ cd nuget && rspec
+    ```
 
 [core-repo]: https://github.com/dependabot/dependabot-core

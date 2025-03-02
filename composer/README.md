@@ -6,13 +6,13 @@ PHP (Composer) support for [`dependabot-core`][core-repo].
 
 1. Start a development shell
 
-  ```
-  $ bin/docker-dev-shell composer
-  ```
+```
+$ bin/docker-dev-shell composer
+```
 
 2. Run tests
-   ```
-   [dependabot-core-dev] ~ $ cd composer && rspec
-   ```
+    ```
+    [dependabot-core-dev] ~ $ cd composer && rspec
+    ```
 
 [core-repo]: https://github.com/dependabot/dependabot-core
