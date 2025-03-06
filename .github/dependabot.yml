@@ -1,146 +1,5252 @@
 version: 2
-updates:
-  - package-ecosystem: "bundler"
-    directories:
-      - "/updater"
-      - "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      sorbet:
-        patterns:
-          - "*-sorbet"
-          - "sorbet-*"
-          - "sorbet"
-          - "tapioca"
-      aws-sdk:
-        patterns:
-          - "aws-sdk-*"
-      prod-dependencies:
-        dependency-type: "production"
-        update-types:
-          - "minor"
-          - "patch"
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
+enable-beta-ecosystems: true
 
-  # Watch the per-ecosystem native helpers
-  - package-ecosystem: "composer"
-    directories:
-      - "/composer/helpers/v1"
-      - "/composer/helpers/v2"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      prod-dependencies:
-        dependency-type: "production"
-        update-types:
-          - "minor"
-          - "patch"
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
-  - package-ecosystem: "devcontainers"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-  - package-ecosystem: "docker"
-    directories:
-      - "/"
-      - "/go_modules"
-      - "/cargo"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      all-actions:
-        patterns: [ "*" ]
-  - package-ecosystem: "gomod"
-    directory: "/go_modules/helpers"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-  - package-ecosystem: "mix"
-    directory: "/hex/helpers"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-  - package-ecosystem: "npm"
-    directory: "/npm_and_yarn/helpers"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      npm-dependencies:
-        patterns:
-          - "@npmcli/arborist"
-          - "nock"
-          - "npm"
-          - "semver"
-        exclude-patterns:
-          - "detect-indent"  # temp excluded due to https://github.com/dependabot/dependabot-core/pull/5683#issuecomment-1243468605
-      yarn-dependencies:
-        patterns:
-          - "@dependabot/yarn-lib"
-      pnpm-dependencies:
-        patterns:
-          - "@pnpm/lockfile-file"
-          - "@pnpm/dependency-path"
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
-    ignore:
-      - dependency-name: "npm"
-        update-types: [ "version-update:semver-major" ]
-  - package-ecosystem: "pip"
-    directory: "/python/helpers"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      common:
-        patterns:
-          - pip
-          - cython
-          - flake8
-      poetry:
-        patterns:
-          - poetry
-          - hashin
-      pip-tools:
-        patterns:
-          - pip-tools
-      pipenv:
-        patterns:
-          - pipfile
-          - pipenv
-  - package-ecosystem: "pub"
-    directory: "/pub/helpers"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
+updates:
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "daily"
+
+    - package-ecosystem: "bundler"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/helpers/v1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/helpers/v2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/bad_branch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/bad_branch_business"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/bad_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/block_source_rubygems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/blocked_by_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/bundler_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/bundler_specified_in_source_bundler_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/cant_unlock_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/comment_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/comments_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/conditional"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/custom_tag_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/default_gem_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/development_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_absolute"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_absolute/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_gemfile/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_nested/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_nested/nested/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_variable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/eval_gemfile_variable/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/exec_error_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/exec_error_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/explicit_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/explicit_ruby_in_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/explicit_ruby_old"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/function_version_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gem_with_number"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_exact"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_example"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_function_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_gemspec_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_impossible_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_multiple_git_requirements"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_multiple_requirements"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_multiple_requirements_array"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_multiple_requirements_parenthesis"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_no_required_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_old_required_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_require_ruby_3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_require_ruby_3_1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_require_ruby_3_2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_require_ruby_3_3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_small_example"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_unevaluatable_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_with_nested_block"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemfile_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemspec_multiple_requirements"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemspec_not_imported"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemspec_not_imported_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemspec_required_ruby_version_range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemspec_required_ruby_version_range_array"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gemspec_required_ruby_version_requirement_class"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_circular"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_internal"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_mismatched"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_no_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_outdated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_reordered"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_undeclared"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_unparseable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_unreleased"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_with_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_with_multiple_deps"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_with_tag_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_source_with_version_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/git_tags_on_newline_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/github_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/gte_matcher"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/guard_bundler"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_from_nested_path/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_from_path"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_git_override_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_imports_gemspec_large"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_no_default_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_no_overlap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_old_required_ruby_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_small_example_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_unevaluatable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_version_as_float"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_version_clash_old_required_ruby_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_gemspec_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/imports_two_gemspecs"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/includes_require_relative_gemfile/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/includes_require_relative_nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/includes_requires_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/interpolated_version_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/invalid_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/jfrog_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/jruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/legacy_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/local_gemspec_needs_updates"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/minor_version_specified_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/minor_version_specified_yanked_gem"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/multiple_blocking"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/multiple_path_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/nested_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/nested_gemfile/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/nested_gemfile_version_not_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/nested_gemfile_version_not_specified/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/nested_gemspec"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/nested_path_source/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/no_bundled_with"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/no_downgrades"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/non_git_tags_at_end_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/non_git_tags_at_start_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/non_git_tags_on_newline_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_gem_with_ruby_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source_eval"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source_if"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source_no_overlap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source_no_overlap_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source_not_reachable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/path_source_statesman"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/platform_windows"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/platform_windows_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/prerelease_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/prerelease_with_dash_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/private_gem_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/private_git_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/private_git_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/private_github_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/requires_bundler"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/ruby_version_file"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/sidekiq_pro"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/source_block_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/specified_default_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/specified_default_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/specified_plugin_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/specified_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/specified_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/subdep_blocked_by_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/subdependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/top_level_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/top_level_update_with_git_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/transitive_blocking"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/unavailable_gem_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/unevaluatable_japanese_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/unsatisfied_required_ruby_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/vendored_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/vendored_gems_with_subdir/acceptance"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/vendored_git"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_between_bounds_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_conflict_mutual_sub"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_conflict_no_req_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_conflict_with_listed_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_not_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_specified_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_specified_gemfile_specification"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler1/version_specified_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/bad_branch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/bad_branch_business"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/bad_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/block_source_rubygems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/blocked_by_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/bundler_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/bundler_specified_in_source_bundler_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/cant_unlock_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/comment_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/comments_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/conditional"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/custom_tag_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/default_gem_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/development_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_absolute"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_absolute/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_gemfile/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_nested/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_nested/nested/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_variable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/eval_gemfile_variable/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/exec_error_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/exec_error_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/explicit_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/explicit_ruby_in_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/explicit_ruby_old"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/function_version_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gem_with_number"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_exact"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_example"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_function_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_gemspec_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_impossible_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_multiple_requirements"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_multiple_requirements_array"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_multiple_requirements_parenthesis"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_no_required_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_old_required_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_require_ruby_3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_require_ruby_3_1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_require_ruby_3_2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_require_ruby_3_3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_small_example"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_unevaluatable_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_with_nested_block"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemfile_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemspec_multiple_requirements"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemspec_not_imported"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemspec_not_imported_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemspec_required_ruby_version_range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemspec_required_ruby_version_range_array"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gemspec_required_ruby_version_requirement_class"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_circular"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_internal"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_invalid_github"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_mismatched"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_no_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_outdated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_reordered"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_undeclared"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_unparseable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_unreleased"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_with_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_with_multiple_deps"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_with_tag_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_source_with_version_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/git_tags_on_newline_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/github_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/gte_matcher"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/guard_bundler"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_from_nested_path/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_from_path"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_git_override_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_imports_gemspec_large"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_no_default_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_no_overlap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_old_required_ruby_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_small_example_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_unevaluatable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_version_as_float"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_version_clash_old_required_ruby_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_gemspec_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/imports_two_gemspecs"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/includes_require_relative_gemfile/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/includes_require_relative_nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/includes_requires_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/interpolated_version_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/invalid_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/jfrog_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/jruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/legacy_ruby"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/local_gemspec_needs_updates"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/minor_version_specified_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/minor_version_specified_yanked_gem"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/multiple_blocking"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/multiple_path_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/nested_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/nested_gemfile/backend"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/nested_gemfile_version_not_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/nested_gemfile_version_not_specified/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/nested_gemspec"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/nested_path_source/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/no_bundled_with"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/no_downgrades"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/non_git_tags_at_end_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/non_git_tags_at_start_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/non_git_tags_on_newline_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_gem_with_ruby_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source_eval"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source_if"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source_no_overlap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source_no_overlap_with_require"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source_not_reachable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/path_source_statesman"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/platform_windows"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/platform_windows_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/prerelease_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/prerelease_with_dash_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/private_gem_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/private_git_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/private_git_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/private_github_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/requires_bundler"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/ruby_version_file"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/ruby_version_implied"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/sidekiq_pro"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/source_block_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/specified_default_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/specified_default_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/specified_plugin_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/specified_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/specified_source_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/subdep_blocked_by_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/subdependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/top_level_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/top_level_update_with_git_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/transitive_blocking"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/unavailable_gem_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/unevaluatable_japanese_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/unsatisfied_required_ruby_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/vendored_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/vendored_gems_with_subdir/acceptance"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/vendored_git"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_between_bounds_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_conflict_mutual_sub"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_conflict_no_req_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_conflict_with_listed_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_not_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_specified_gemfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_specified_gemfile_specification"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/bundler/spec/fixtures/projects/bundler2/version_specified_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "cargo"
+      directory: "/cargo/spec/fixtures/projects/version_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: lockfile-only
+
+    - package-ecosystem: "bundler"
+      directory: "/common/spec/fixtures/projects/nested_vendor_gems/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/common/spec/fixtures/projects/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/common/spec/fixtures/projects/vendor_gems"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/common/spec/fixtures/ruby/gemfiles"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/helpers/v1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/helpers/v2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/alternative_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/autoload"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/bad_php"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/conflicts"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/covered_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/dev_and_runtime_dep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/dev_branch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/development_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/development_dependencies_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/development_subdependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/doctored"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/env_variable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/exact_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/exact_version_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_alias"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_bad_commit"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_bad_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_conflict_at_latest"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_git_url"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_no_api"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_transitive"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_unreachable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_unreachable_git_url"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/git_source_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/gutted"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/integer_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/invalid_manifest"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/invalid_version_constraint"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/invalid_version_string"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/laravel_nova"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/local_vcs_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/media_organizer"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/minor_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/minor_version_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/missing_extension"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/non_standard_whitespace"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/null_dependencies_with_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/odd_php_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/old_php_platform"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/old_php_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/outdated_flex"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/patches"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/path_source/components/path_dep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/path_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/php_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/php_specified_in_library"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/php_specified_min_invalid"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/php_specified_min_invalid_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/php_specified_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/platform_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/plugin"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/prerelease_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/private_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/private_registry_not_found"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/private_registry_with_auth_json"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/private_registry_with_unparseable_auth_json"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/provided_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/replaced_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/replaced_direct_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/requires_self"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/stability_flag"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/subdependency_no_longer_required"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/subdependency_update_required"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/unaddable_platform_req"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/unparseable_composer_json"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/unparseable_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/unreachable_path_vcs_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/unreachable_private_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/env_variable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/exact_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/invalid_v2_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/invalid_v2_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/minor_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/outdated_flex"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/patches"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/pear"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/plugin"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v1/vcs_source_unreachable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/v_prefix"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/vcs_source_unreachable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict_at_latest"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict_at_latest_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict_library"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict_on_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict_on_update_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/composer/spec/fixtures/projects/version_conflict_without_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/elm/spec/fixtures/elm_jsons"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/deeply-nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/npm6/fixtures/updater/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/deeply-nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/dev-dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/updater/illegal_character"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/updater/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/helpers/test/yarn/fixtures/updater/with-version-comments"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/generic/file_version_requirements_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/generic/npmrc_auth_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/generic/npmrc_env_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/generic/npmrc_env_auth_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/generic/null_deps"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/generic/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm/lockfile_version_unparseable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm/package_manager_unparseable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm/unparseable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm4/shrinkwrap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm4/shrinkwrap_relative"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm5/git_sub_dep_invalid"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm5/subdependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm5_and_yarn/npm_subdependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/all_private"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/all_private_env_global_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/blank_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/duplicate"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/empty_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/etag_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/exact_version_requirements_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/flat_resolution"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/ghpr_no_hash_pinning"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_branch_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_local_file"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_with_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_yarn_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_missing_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_ref_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_sub_dep_invalid_from"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/git_tag_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_no_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_private"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver_modern"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_scoped_sub_dependency_version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_shortname"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_name_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/hash_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/invalid_package_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/invalid_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/invalid_version_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/latest_package_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_multiple_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_single_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/multiple_sources"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/no_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency_yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token_carriage_return"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token_with_space"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_env_auth_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_env_global_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_env_url"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/npmrc_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/only_dev_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/optional_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/os_mismatch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/path_dependency/deps/etag"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/path_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_changed"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_git_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_mismatch_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_multiple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_shrinkwrap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_switch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_typescript_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/private_artifactory_repository"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/private_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/private_source_lower"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/private_source_npmrc"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/private_source_shrinkwrap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/shrinkwrap"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/simple_manifest"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/subdependency_out_of_range_gt"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update_tab_indentation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/tarball_bug"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/url_versions"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6/yanked_version_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_npm"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_yarn"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/duplicate_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_commit_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_empty_npm_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_git_url"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_outdated_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ssh"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_commit_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_no_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_semver"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/multiple_updates"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package4"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/npm_subdependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency/deps/etag"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/private_source_empty_npm_lock"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/wildcard"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/app_no_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/bogus_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/dev_and_peer_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/duplicate_identical"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/engines"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_commit_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_empty_npm_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_git_url"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_local_file"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_outdated_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ssh"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_yarn_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_missing_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_ref_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_sub_dep_invalid_from"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/git_tag_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_commit_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_no_ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_private"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver_modern"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_scoped_sub_dependency_version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_name_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/invalid_hash_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/invalid_package_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/invalid_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/latest_package_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/latest_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/lerna"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/library"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/library_with_global_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/library_with_scoped_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_outdated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_plus_fixed"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_removed"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/lockfile_with_newline"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/minor_version_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/monorepo_dep_multiple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/multiple_updates"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package4"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/no_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/non_standard_whitespace"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/nonexistent_dependency_yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_auth_token"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_global_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/os_mismatch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/package-lock-v3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/package-lock"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/package_with_space_in_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/packages_name_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/path_dependency/deps/etag"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/path_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file/another"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_changed"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_multiple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_switch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_two_semver_constraints"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_and_npm"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_only"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_with_ports"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/scoped_private_source_with_npmrc"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/simple_lockfile_v3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/simple_no_indentation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/subdependency-in-range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update_tab_indentation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/tarball_bug"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_effects_cycle"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_but_updateable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_multiple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_parent"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_multiple_versions"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/wildcard"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package/packages/build"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3/packages/build"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level/api"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level_lockfile_v3/api"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level_lockfile_v3"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_outdated_deps_not_in_root_package_json/bump-version-for-cron"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspace_outdated_deps_not_in_root_package_json"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspaces/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspaces/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version/package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm8/yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm9/private-public"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/npm9/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/aliased_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/github_dependency_private"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/github_sub_dependency_name_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/invalid_platform"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/invalid_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/lockfile_only_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/multiple_sub_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/no_lockfile_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_dependency_yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_locked_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/overrides_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_changed"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_multiple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_switch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_two_semver_constraints"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation_v6"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/pnpm-lock"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/private_registry_ghpr"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/private_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/private_tarball_urls"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/resolution_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/tarball_urls"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/typedoc-plugin-ui-router"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/pnpm/yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private_env_global_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private_env_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private_global_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private_global_registry_no_lock"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private_global_registry_npmrc"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/all_private_offline_mirror"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/dist_tag"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/double_star_single_star_workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/double_star_workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/duplicate_indirect_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/frozen_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/git_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_from_subdep"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_local_file"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_outdated_req"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_with_auth"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/git_missing_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_semver"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_slash"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_yarn_semver"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/github_scoped_sub_dependency_version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_name_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_version_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/http_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/invalid_platform"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/invalid_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/latest_package_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/missing_requirement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/multiple_sub_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/nested_glob_workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/no_lockfile_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/nonexistent_dependency_yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/npm_global_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/only_dev_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/optional_dependencies"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/package_json_contains_illegal_characters_in_name"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/path_dependency/deps/etag"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/path_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_multiple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_nested"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_nested/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_switch"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/private_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/resolution_specified"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/resolutions"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/resolutions_invalid"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/scoped_private_source_with_npmrc"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/simple_with_registry_that_times_out"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/subdependency_out_of_range_gt"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-example"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-git-submodule-example"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/symlinked_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/ts_fully_typed"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/ts_missing_types"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/ts_no_type_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/typedoc-plugin-ui-router"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspace_requirements_no_lockfile"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspaces/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspaces/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/yanked_version"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_global_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_global_registry_with_space"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_npm_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/env_variable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/misconfigured"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/multiple_requirements"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/no_lockfile_change"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/peer_dependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/private_source"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_node_modules"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_nopnp"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/subdependency"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_global_registry"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_yml_misconfigured"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm6/subdependency_update_tab_indentation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/lockfile_with_newline"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_missing"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_outdated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/simple"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/simple_no_indentation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/subdependency_update_tab_indentation"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/other_package"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "npm"
+      directory: "/npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/packages/package1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Build.Tasks"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.CommandLine"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Commands"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Common"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Configuration"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Credentials"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.DependencyResolver.Core"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Frameworks"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.LibraryModel"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.PackageManagement"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Packaging"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.ProjectModel"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Protocol"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Resolver"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetProjects/NuGet.Versioning"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetUpdater.Cli.Test"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetUpdater.Cli"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetUpdater.Core.Test"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/helpers/lib/NuGetUpdater/NuGetUpdater.Core"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/csproj"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/csproj_in_subdirectory/src/some-project"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/props_file_in_parent_directory/src"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/solution_in_subdirectory/src/ABC.Contracts"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/solution_in_subdirectory/src/ABC.Web"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/solution_with_relative_paths/src"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/solution_with_relative_paths/test"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/with_dirs.proj_as_entry/src/LibraryA"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/github/with_dirs.proj_as_entry/src/LibraryB"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/packages_configs"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/file_updater_dirsproj/Proj1/Proj1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/file_updater_dirsproj_wildcards/Proj1/Proj1"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/file_updater_dirsproj_wildcards/Proj2"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/implicit_reference"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/open_upper_version_range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/paginated_package_v2_api"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/simple_update"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/tfm_finder"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/tfm_finder/ref"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "nuget"
+      directory: "/nuget/spec/fixtures/projects/version_range"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "pip"
+      directory: "/python/helpers"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "pip"
+      directory: "/python/spec/fixtures/projects/unresolvable"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler/updated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler2/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler2/updated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler_gemspec/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler_gemspec/updated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler_grouped/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler_vendored/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "bundler"
+      directory: "/updater/spec/fixtures/bundler_vendored/updated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/updater/spec/fixtures/composer/original"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase
+
+    - package-ecosystem: "composer"
+      directory: "/updater/spec/fixtures/composer/updated"
+      schedule:
+          interval: "daily"
+      versioning-strategy: increase

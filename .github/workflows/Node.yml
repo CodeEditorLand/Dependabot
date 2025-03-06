@@ -1,0 +1,3995 @@
+name: Node
+
+concurrency:
+    group: Node-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    security-events: write
+    contents: write
+    pull-requests: write
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [Current]
+    pull_request:
+        branches: [Current]
+    workflow_call:
+
+jobs:
+    Pre-Publish:
+        runs-on: ubuntu-latest
+
+        env:
+            ADBLOCK: true
+            ASTRO_TELEMETRY_DISABLED: 1
+            AUTOMATEDLAB_TELEMETRY_OPTOUT: 1
+            AZURE_CORE_COLLECT_TELEMETRY: 0
+            CHOOSENIM_NO_ANALYTICS: 1
+            DIEZ_DO_NOT_TRACK: 1
+            DO_NOT_TRACK: 1
+            DOTNET_CLI_TELEMETRY_OPTOUT: 1
+            DOTNET_INTERACTIVE_CLI_TELEMETRY_OPTOUT: 1
+            ET_NO_TELEMETRY: 1
+            GATSBY_TELEMETRY_DISABLED: 1
+            GATSBY_TELEMETRY_OPT_OUT: 1
+            GATSBY_TELEMETRY_OPTOUT: 1
+            GRIT_TELEMETRY_DISABLED: 1
+            HASURA_GRAPHQL_ENABLE_TELEMETRY: false
+            HINT_TELEMETRY: off
+            HOMEBREW_NO_ANALYTICS: 1
+            INFLUXD_REPORTING_DISABLED: true
+            ITERATIVE_DO_NOT_TRACK: 1
+            NEXT_TELEMETRY_DEBUG: 1
+            NEXT_TELEMETRY_DISABLED: 1
+            NG_CLI_ANALYTICS: false
+            NUXT_TELEMETRY_DISABLED: 1
+            PIN_DO_NOT_TRACK: 1
+            POWERSHELL_TELEMETRY_OPTOUT: 1
+            SAM_CLI_TELEMETRY: 0
+            STNOUPGRADE: 1
+            STRIPE_CLI_TELEMETRY_OPTOUT: 1
+            TELEMETRY_DISABLED: 1
+            TERRAFORM_TELEMETRY: 0
+            VCPKG_DISABLE_METRICS: 1
+
+        strategy:
+            matrix:
+                node-version: [18, 19, 20]
+
+        steps:
+            - uses: actions/checkout@v4.2.2
+
+            - uses: pnpm/action-setup@v4.1.0
+              with:
+                  version: 9.3.0
+                  run_install: |
+                      - recursive: true
+                        args: [
+                          --link-workspace-packages=true,
+                          --lockfile-only,
+                          --prefer-frozen-lockfile=false,
+                          --shamefully-hoist=false,
+                          --shared-workspace-lockfile=true,
+                          --strict-peer-dependencies=false,
+                          --unsafe-perm=true
+                        ]
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./elm/spec/fixtures/elm_jsons/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./elm/spec/fixtures/elm_jsons
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/deeply-nested/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/deeply-nested
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/deeply-nested
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/nested/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/nested
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/nested
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/simple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/simple
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/simple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/npm6/fixtures/updater/original/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/updater/original
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/deeply-nested/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/deeply-nested
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/deeply-nested
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/dev-dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/dev-dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/dev-dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/nested/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/nested
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/nested
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/simple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/simple
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/simple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/illegal_character/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/illegal_character
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/original/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/original
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/with-version-comments/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/with-version-comments
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/generic/file_version_requirements_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/generic/file_version_requirements_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/generic/file_version_requirements_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/generic/null_deps/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/generic/null_deps
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm/unparseable/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm/unparseable
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm5/git_sub_dep_invalid/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5/git_sub_dep_invalid
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm5/subdependency_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5/subdependency_update
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5/subdependency_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm5_and_yarn/npm_subdependency_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5_and_yarn/npm_subdependency_update
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5_and_yarn/npm_subdependency_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/blank_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/blank_requirement
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/blank_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/duplicate/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/duplicate
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/duplicate
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/etag_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/etag_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/etag_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/exact_version_requirements_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/exact_version_requirements_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/exact_version_requirements_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/flat_resolution/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/flat_resolution
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/ghpr_no_hash_pinning/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/ghpr_no_hash_pinning
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/ghpr_no_hash_pinning
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_branch_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_branch_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_branch_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_local_file/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_local_file
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_local_file
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_with_auth/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_with_auth
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_with_auth
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_yarn_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_yarn_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_missing_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_missing_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_missing_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_ref_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_ref_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_ref_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_sub_dep_invalid_from/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_sub_dep_invalid_from
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_sub_dep_invalid_from
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/git_tag_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_tag_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_tag_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_no_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_no_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_no_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_private/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_private
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_private
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver_modern/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver_modern
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver_modern
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_scoped_sub_dependency_version_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_scoped_sub_dependency_version_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_scoped_sub_dependency_version_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_shortname/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_shortname
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_shortname
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_name_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_name_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_name_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_version_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_version_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_version_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/hash_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/hash_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/invalid_package_name/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/invalid_package_name
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/invalid_package_name
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/latest_package_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/latest_package_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_multiple_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_multiple_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_multiple_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_single_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_single_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_single_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/multiple_sources/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/multiple_sources
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/multiple_sources
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency_yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency_yanked_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency_yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token_with_space/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token_with_space
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token_with_space
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/only_dev_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/only_dev_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/only_dev_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/optional_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/optional_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/optional_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/os_mismatch/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/os_mismatch
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/os_mismatch
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency/deps/etag/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency/deps/etag
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency/deps/etag
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_changed/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_changed
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_git_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_git_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_mismatch_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_mismatch_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_mismatch_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_multiple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_multiple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_shrinkwrap/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_shrinkwrap
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_shrinkwrap
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_switch/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_switch
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_typescript_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_typescript_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_typescript_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/private_artifactory_repository/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_artifactory_repository
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_lower/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_lower
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_lower
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_npmrc/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_npmrc
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_npmrc
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_shrinkwrap/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_shrinkwrap
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_out_of_range_gt/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_out_of_range_gt
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_out_of_range_gt
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update_tab_indentation/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update_tab_indentation
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update_tab_indentation
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/tarball_bug/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/tarball_bug
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/tarball_bug
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/url_versions/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/url_versions
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/url_versions
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_npm/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_npm
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_npm
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_yarn/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_yarn
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_yarn
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/duplicate_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/duplicate_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_commit_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_commit_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_commit_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_empty_npm_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_empty_npm_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_empty_npm_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_git_url/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_git_url
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_git_url
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_outdated_source/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_outdated_source
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_outdated_source
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ssh/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ssh
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ssh
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_token/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_token
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_token
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_commit_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_commit_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_no_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_no_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_no_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_semver/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_semver
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_semver
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/multiple_updates/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/multiple_updates
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/multiple_updates
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package3/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package3
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package3
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package3/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package3
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package3
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package3/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package3
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package3
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package4/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package4
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package4
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/npm_subdependency_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/npm_subdependency_update
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/npm_subdependency_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency/deps/etag/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency/deps/etag
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency/deps/etag
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/private_source_empty_npm_lock/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/private_source_empty_npm_lock
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/private_source_empty_npm_lock
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/wildcard/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/wildcard
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/wildcard
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/app_no_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/app_no_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/app_no_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/bogus_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/bogus_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/bogus_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/duplicate_identical/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/duplicate_identical
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/duplicate_identical
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_commit_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_commit_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_commit_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_empty_npm_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_empty_npm_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_empty_npm_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_git_url/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_git_url
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_git_url
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_local_file/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_local_file
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_local_file
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_outdated_source/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_outdated_source
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_outdated_source
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ssh/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ssh
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ssh
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_token/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_token
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_token
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_yarn_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_yarn_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_missing_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_missing_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_missing_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_ref_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_ref_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_ref_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_sub_dep_invalid_from/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_sub_dep_invalid_from
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_sub_dep_invalid_from
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/git_tag_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_tag_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_tag_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_commit_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_commit_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_no_ref/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_no_ref
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_no_ref
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_private/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_private
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_private
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver_modern/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver_modern
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver_modern
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_scoped_sub_dependency_version_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_scoped_sub_dependency_version_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_scoped_sub_dependency_version_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_name_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_name_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_name_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_version_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_version_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_version_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_hash_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_hash_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_package_name/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_package_name
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_package_name
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/latest_package_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/latest_package_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/latest_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/latest_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/library/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_global_registry/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_global_registry
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_global_registry
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_scoped_registry/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_scoped_registry
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_scoped_registry
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_outdated/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_outdated
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_outdated
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_plus_fixed/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_plus_fixed
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_plus_fixed
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_removed/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_removed
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_removed
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/minor_version_specified/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/minor_version_specified
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/minor_version_specified
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/monorepo_dep_multiple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/monorepo_dep_multiple
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/monorepo_dep_multiple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/multiple_updates/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/multiple_updates
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/multiple_updates
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package2/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package2
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package2
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package4/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package4
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package4
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/non_standard_whitespace/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/non_standard_whitespace
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/non_standard_whitespace
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/nonexistent_dependency_yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nonexistent_dependency_yanked_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nonexistent_dependency_yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_auth_token/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_auth_token
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_global_auth/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_global_auth
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/os_mismatch/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/os_mismatch
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/os_mismatch
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock-v3/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock-v3
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock-v3
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency/deps/etag/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency/deps/etag
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency/deps/etag
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file/another/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file/another
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file/another
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_changed/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_changed
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_multiple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_multiple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_switch/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_switch
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_two_semver_constraints/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_two_semver_constraints
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_two_semver_constraints
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_and_npm/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_and_npm
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_and_npm
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_only/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_only
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_only
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_with_ports/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_with_ports
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_with_ports
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/scoped_private_source_with_npmrc/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/scoped_private_source_with_npmrc
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/scoped_private_source_with_npmrc
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/simple_lockfile_v3/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/simple_lockfile_v3
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/simple_lockfile_v3
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency-in-range/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency-in-range
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency-in-range
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update_tab_indentation/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update_tab_indentation
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update_tab_indentation
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/tarball_bug/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/tarball_bug
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/tarball_bug
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_effects_cycle/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_effects_cycle
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_effects_cycle
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_but_updateable/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_but_updateable
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_but_updateable
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_multiple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_multiple
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_multiple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_parent/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_parent
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_parent
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_multiple_versions/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_multiple_versions
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_multiple_versions
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/wildcard/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/wildcard
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/wildcard
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package/packages/build/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package/packages/build
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3/packages/build/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3/packages/build
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level/api/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level/api
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level_lockfile_v3/api/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level_lockfile_v3/api
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_outdated_deps_not_in_root_package_json/bump-version-for-cron/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_outdated_deps_not_in_root_package_json/bump-version-for-cron
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version/package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version/package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version/package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm8/yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm9/private-public/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm9/private-public
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm9/private-public
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/npm9/simple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm9/simple
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/npm9/simple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/aliased_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/aliased_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_dependency_private/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_dependency_private
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_sub_dependency_name_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_sub_dependency_name_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_sub_dependency_name_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_platform/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_platform
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_platform
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_requirement
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/lockfile_only_change/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/lockfile_only_change
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/multiple_sub_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/multiple_sub_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/multiple_sub_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/no_lockfile_change/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/no_lockfile_change
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/no_lockfile_change
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_dependency_yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_dependency_yanked_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_dependency_yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_locked_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_locked_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/overrides_specified/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/overrides_specified
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/overrides_specified
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_changed/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_changed
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_multiple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_multiple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_switch/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_switch
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_two_semver_constraints/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_two_semver_constraints
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_two_semver_constraints
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation_v6/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation_v6
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/pnpm-lock/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/pnpm-lock
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/pnpm-lock
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_registry_ghpr/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_registry_ghpr
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_source/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_source
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_source
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_tarball_urls/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_tarball_urls
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/resolution_specified/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/resolution_specified
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/resolution_specified
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/simple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/simple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/tarball_urls/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/tarball_urls
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/tarball_urls
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/typedoc-plugin-ui-router/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/typedoc-plugin-ui-router
+
+            - run: pnpm run build
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: .-npm_and_yarn-spec-fixtures-projects-pnpm-typedoc-plugin-ui-router-Node-${{ matrix.node-version }}-Target
+                  path: ./npm_and_yarn/spec/fixtures/projects/pnpm/typedoc-plugin-ui-router/Target
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/pnpm/yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/yanked_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency_name/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency_name
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/dist_tag/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/dist_tag
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/dist_tag
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/double_star_single_star_workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/double_star_single_star_workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/double_star_workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/double_star_workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/duplicate_indirect_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/duplicate_indirect_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_from_subdep/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_from_subdep
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_from_subdep
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_local_file/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_local_file
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_local_file
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_outdated_req/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_outdated_req
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_outdated_req
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_with_auth/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_with_auth
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_with_auth
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/git_missing_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_missing_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_missing_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_semver/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_semver
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_semver
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_slash/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_slash
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_yarn_semver/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_yarn_semver
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_yarn_semver
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/github_scoped_sub_dependency_version_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_scoped_sub_dependency_version_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_scoped_sub_dependency_version_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_name_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_name_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_name_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_version_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_version_missing
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_version_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/invalid_platform/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/invalid_platform
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/invalid_platform
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/latest_package_requirement/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/latest_package_requirement
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change
+
+            - run: pnpm run build
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: .-npm_and_yarn-spec-fixtures-projects-yarn-lockfile_only_change-Node-${{ matrix.node-version }}-Target
+                  path: ./npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change/Target
+
+            - run: pnpm run prepublishOnly
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: .-npm_and_yarn-spec-fixtures-projects-yarn-lockfile_only_change-Node-${{ matrix.node-version }}-Target
+                  path: ./npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change/Target
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/multiple_sub_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/multiple_sub_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/multiple_sub_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/nested_glob_workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/nested_glob_workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/no_lockfile_change/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/no_lockfile_change
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/no_lockfile_change
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/nonexistent_dependency_yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/nonexistent_dependency_yanked_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/nonexistent_dependency_yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/npm_global_registry/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/npm_global_registry
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/npm_global_registry
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/only_dev_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/only_dev_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/only_dev_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/optional_dependencies/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/optional_dependencies
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/optional_dependencies
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/package_json_contains_illegal_characters_in_name/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/package_json_contains_illegal_characters_in_name
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency/deps/etag/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency/deps/etag
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency/deps/etag
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_multiple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_multiple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_nested/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_nested/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_nested/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_switch/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_switch
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/private_source/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/private_source
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/private_source
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/resolution_specified/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolution_specified
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolution_specified
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions_invalid/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions_invalid
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions_invalid
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/scoped_private_source_with_npmrc/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/scoped_private_source_with_npmrc
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/scoped_private_source_with_npmrc
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/subdependency_out_of_range_gt/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/subdependency_out_of_range_gt
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/subdependency_out_of_range_gt
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-example/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-example
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-git-submodule-example/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-git-submodule-example
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/symlinked_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/symlinked_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/symlinked_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_fully_typed/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_fully_typed
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_missing_types/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_missing_types
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_no_type_update/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_no_type_update
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/typedoc-plugin-ui-router/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/typedoc-plugin-ui-router
+
+            - run: pnpm run build
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: .-npm_and_yarn-spec-fixtures-projects-yarn-typedoc-plugin-ui-router-Node-${{ matrix.node-version }}-Target
+                  path: ./npm_and_yarn/spec/fixtures/projects/yarn/typedoc-plugin-ui-router/Target
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspace_requirements_no_lockfile/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspace_requirements_no_lockfile
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspace_requirements_no_lockfile
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/yanked_version/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yanked_version
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yanked_version
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_global_registry_with_space/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_global_registry_with_space
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_global_registry_with_space
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_npm_registry/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_npm_registry
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/env_variable/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/env_variable
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/env_variable
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change
+
+            - run: pnpm run build
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: .-npm_and_yarn-spec-fixtures-projects-yarn_berry-lockfile_only_change-Node-${{ matrix.node-version }}-Target
+                  path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change/Target
+
+            - run: pnpm run prepublishOnly
+              working-directory: .
+
+            - uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: .-npm_and_yarn-spec-fixtures-projects-yarn_berry-lockfile_only_change-Node-${{ matrix.node-version }}-Target
+                  path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change/Target
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/misconfigured/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/misconfigured
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/misconfigured
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/multiple_requirements/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/multiple_requirements
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/no_lockfile_change/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/no_lockfile_change
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/no_lockfile_change
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/peer_dependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/peer_dependency
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/peer_dependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/private_source/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/private_source
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/private_source
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_node_modules/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_node_modules
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_nopnp/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_nopnp
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/subdependency/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/subdependency
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/packages/package1
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_global_registry/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_global_registry
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_yml_misconfigured/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_yml_misconfigured
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_yml_misconfigured
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/subdependency_update_tab_indentation/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/subdependency_update_tab_indentation
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/subdependency_update_tab_indentation
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/lockfile_with_newline/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/lockfile_with_newline
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_missing/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_missing
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_outdated/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_outdated
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/simple/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/simple
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/simple_no_indentation/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/simple_no_indentation
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/subdependency_update_tab_indentation/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/subdependency_update_tab_indentation
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/subdependency_update_tab_indentation
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/other_package/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/other_package
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/other_package
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev
+
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+                  cache-dependency-path: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/packages/package1/pnpm-lock.yaml
+
+            - run: pnpm install
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/packages/package1
+
+            - run: pnpm run test
+              working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/packages/package1
