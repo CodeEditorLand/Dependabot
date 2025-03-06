@@ -24,7 +24,7 @@ jobs:
       decision: ${{ steps.decision.outputs.decision }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: recursive
 
@@ -77,7 +77,7 @@ jobs:
       DEPENDABOT_UPDATER_VERSION: ${{ github.sha }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: recursive
 
