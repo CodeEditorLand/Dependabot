@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-      "react": "19.0.0",
+      "react": "19.1.0",
       "react-tabs": "6.1.0",
       "react-modal": "3.16.3"
     }

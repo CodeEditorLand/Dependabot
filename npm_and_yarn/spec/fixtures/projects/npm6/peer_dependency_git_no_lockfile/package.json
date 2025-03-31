@@ -4,6 +4,6 @@
 	"description": "Testing",
 	"dependencies": {
 		"@trainline/react-skeletor": "github:trainline/react-skeletor",
-		"react": "19.0.0"
+		"react": "19.1.0"
 	}
 }
