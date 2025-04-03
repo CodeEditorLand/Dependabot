@@ -9,6 +9,6 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@sentry/react": "9.10.1"
+		"@sentry/react": "9.11.0"
 	}
 }

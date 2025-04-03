@@ -80,7 +80,7 @@
 		"eslint-plugin-flowtype": "8.0.3",
 		"eslint-plugin-import": "2.31.0",
 		"eslint-plugin-jest": "28.11.0",
-		"eslint-plugin-prettier": "5.2.5",
+		"eslint-plugin-prettier": "5.2.6",
 		"flow-bin": "0.266.1",
 		"git-contributors": "0.2.5",
 		"husky": "9.1.7",
