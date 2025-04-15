@@ -3,4 +3,4 @@ on:
 
 jobs:
   test:
-    uses: actions/checkout/.github/workflows/test.yml@v2.1.0
+    uses: actions/checkout/.github/workflows/test.yml@v4.2.2
