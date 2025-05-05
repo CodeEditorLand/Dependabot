@@ -9,6 +9,6 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"right-pad": "1.1.0"
+		"right-pad": "1.1.1"
 	}
 }
