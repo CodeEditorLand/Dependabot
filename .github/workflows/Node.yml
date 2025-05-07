@@ -76,7 +76,7 @@ jobs:
                           --unsafe-perm=true
                         ]
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -85,7 +85,7 @@ jobs:
             - run: pnpm install
               working-directory: ./elm/spec/fixtures/elm_jsons
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -97,7 +97,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -109,7 +109,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/deeply-nested
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -121,7 +121,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/nested
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -133,7 +133,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/conflicting-dependency-parser/simple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -142,7 +142,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/helpers/test/npm6/fixtures/updater/original
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -154,7 +154,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/deeply-nested
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -166,7 +166,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/dev-dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -178,7 +178,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/nested
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -190,7 +190,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/conflicting-dependency-parser/simple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -199,7 +199,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/illegal_character
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -208,7 +208,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/original
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -217,7 +217,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/helpers/test/yarn/fixtures/updater/with-version-comments
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -229,7 +229,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/generic/file_version_requirements_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -238,7 +238,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/generic/null_deps
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -247,7 +247,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm/unparseable
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -256,7 +256,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5/git_sub_dep_invalid
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -268,7 +268,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5/subdependency_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -280,7 +280,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm5_and_yarn/npm_subdependency_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -292,7 +292,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/blank_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -304,7 +304,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/duplicate
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -316,7 +316,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/etag_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -328,7 +328,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/exact_version_requirements_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -337,7 +337,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/flat_resolution
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -349,7 +349,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/ghpr_no_hash_pinning
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -361,7 +361,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -373,7 +373,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_branch_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -385,7 +385,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_local_file
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -397,7 +397,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -409,7 +409,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -421,7 +421,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_with_auth
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -430,7 +430,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_dependency_yarn_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -442,7 +442,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_missing_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -454,7 +454,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_ref_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -466,7 +466,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_sub_dep_invalid_from
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -478,7 +478,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/git_tag_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -490,7 +490,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -502,7 +502,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_no_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -514,7 +514,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_private
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -526,7 +526,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -538,7 +538,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_dependency_semver_modern
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -550,7 +550,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_scoped_sub_dependency_version_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -562,7 +562,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_shortname
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -574,7 +574,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_name_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -586,7 +586,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/github_sub_dependency_version_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -595,7 +595,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/hash_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -607,7 +607,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/invalid_package_name
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -616,7 +616,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/latest_package_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -628,7 +628,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_multiple_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -640,7 +640,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/monorepo_dep_single_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -652,7 +652,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/multiple_sources
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -664,7 +664,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -676,7 +676,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/nonexistent_dependency_yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -688,7 +688,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/npmrc_auth_token_with_space
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -700,7 +700,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/only_dev_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -712,7 +712,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/optional_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -724,7 +724,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/os_mismatch
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -736,7 +736,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency/deps/etag
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -748,7 +748,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/path_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -760,7 +760,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -769,7 +769,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_changed
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -781,7 +781,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -793,7 +793,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_duplicate_nested_no_lockfile/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -802,7 +802,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_git_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -814,7 +814,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_mismatch_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -823,7 +823,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_multiple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -835,7 +835,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -847,7 +847,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_shrinkwrap
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -856,7 +856,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_switch
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -868,7 +868,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/peer_dependency_typescript_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -877,7 +877,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_artifactory_repository
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -889,7 +889,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -901,7 +901,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_lower
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -913,7 +913,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_npmrc
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -922,7 +922,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/private_source_shrinkwrap
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -934,7 +934,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_out_of_range_gt
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -946,7 +946,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -958,7 +958,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/subdependency_update_tab_indentation
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -970,7 +970,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/tarball_bug
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -982,7 +982,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -994,7 +994,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/url_versions
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1003,7 +1003,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1015,7 +1015,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6/yanked_version_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1027,7 +1027,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_npm
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1039,7 +1039,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/diverged_sub_dependency_missing_yarn
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1048,7 +1048,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/duplicate_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1060,7 +1060,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1072,7 +1072,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_commit_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1084,7 +1084,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_empty_npm_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1096,7 +1096,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_git_url
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1108,7 +1108,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_outdated_source
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1120,7 +1120,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1132,7 +1132,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_ssh
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1144,7 +1144,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/git_dependency_token
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1153,7 +1153,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1162,7 +1162,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/githost_dependency_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1174,7 +1174,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1183,7 +1183,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_commit_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1195,7 +1195,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_no_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1207,7 +1207,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/github_dependency_semver
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1219,7 +1219,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1231,7 +1231,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1243,7 +1243,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1255,7 +1255,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/lerna/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1267,7 +1267,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/multiple_updates
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1279,7 +1279,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1291,7 +1291,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1303,7 +1303,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_dependency_update/packages/package3
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1315,7 +1315,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1327,7 +1327,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1339,7 +1339,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update/packages/package3
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1351,7 +1351,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1363,7 +1363,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1375,7 +1375,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package3
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1387,7 +1387,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/nested_sub_dependency_update_npm_out_of_range/packages/package4
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1399,7 +1399,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/npm_subdependency_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1411,7 +1411,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency/deps/etag
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1423,7 +1423,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/path_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1435,7 +1435,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/private_source_empty_npm_lock
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1447,7 +1447,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm6_and_yarn/wildcard
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1459,7 +1459,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/app_no_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1471,7 +1471,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/bogus_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1483,7 +1483,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/duplicate_identical
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1495,7 +1495,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1507,7 +1507,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_commit_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1519,7 +1519,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_empty_npm_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1531,7 +1531,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_git_url
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1543,7 +1543,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_local_file
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1555,7 +1555,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_outdated_source
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1567,7 +1567,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1579,7 +1579,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_ssh
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1591,7 +1591,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_token
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1603,7 +1603,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1612,7 +1612,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_dependency_yarn_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1624,7 +1624,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_missing_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1636,7 +1636,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_ref_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1648,7 +1648,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_sub_dep_invalid_from
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1660,7 +1660,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/git_tag_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1669,7 +1669,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1678,7 +1678,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/githost_dependency_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1690,7 +1690,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1699,7 +1699,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_commit_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1711,7 +1711,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_no_ref
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1723,7 +1723,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_private
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1735,7 +1735,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1747,7 +1747,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_dependency_semver_modern
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1759,7 +1759,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_scoped_sub_dependency_version_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1771,7 +1771,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_name_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1783,7 +1783,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/github_sub_dependency_version_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1792,7 +1792,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_hash_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1804,7 +1804,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/invalid_package_name
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1813,7 +1813,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/latest_package_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1822,7 +1822,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/latest_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1834,7 +1834,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1846,7 +1846,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1858,7 +1858,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1870,7 +1870,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/lerna/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1882,7 +1882,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1894,7 +1894,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_global_registry
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1906,7 +1906,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/library_with_scoped_registry
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1918,7 +1918,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1930,7 +1930,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_outdated
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1942,7 +1942,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_plus_fixed
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1954,7 +1954,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/locked_transitive_dependency_removed
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1966,7 +1966,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/minor_version_specified
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1978,7 +1978,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/monorepo_dep_multiple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1990,7 +1990,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/multiple_updates
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -1999,7 +1999,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2011,7 +2011,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2023,7 +2023,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2032,7 +2032,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2044,7 +2044,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2056,7 +2056,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package2
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2068,7 +2068,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nested_sub_dependency_update_npm_out_of_range/packages/package4
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2080,7 +2080,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/non_standard_whitespace
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2092,7 +2092,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/nonexistent_dependency_yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2101,7 +2101,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_auth_token
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2110,7 +2110,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/npmrc_env_global_auth
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2122,7 +2122,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/os_mismatch
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2134,7 +2134,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock-v3
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2146,7 +2146,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/package-lock
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2155,7 +2155,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2164,7 +2164,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2173,7 +2173,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/packages_name_outdated_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2185,7 +2185,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency/deps/etag
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2197,7 +2197,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2209,7 +2209,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file/another
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2221,7 +2221,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/path_dependency_blank_file
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2233,7 +2233,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2242,7 +2242,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_changed
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2251,7 +2251,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_multiple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2260,7 +2260,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_switch
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2272,7 +2272,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/peer_dependency_two_semver_constraints
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2284,7 +2284,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_and_npm
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2296,7 +2296,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_only
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2308,7 +2308,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/private_registry_ghpr_with_ports
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2320,7 +2320,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/scoped_private_source_with_npmrc
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2332,7 +2332,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/simple_lockfile_v3
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2344,7 +2344,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency-in-range
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2356,7 +2356,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2368,7 +2368,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/subdependency_update_tab_indentation
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2380,7 +2380,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/tarball_bug
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2392,7 +2392,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_effects_cycle
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2404,7 +2404,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_but_updateable
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2416,7 +2416,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2428,7 +2428,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2440,7 +2440,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_multiple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2452,7 +2452,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_locked_by_parent
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2464,7 +2464,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/transitive_dependency_multiple_versions
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2476,7 +2476,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/wildcard
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2485,7 +2485,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2494,7 +2494,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package/packages/build
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2503,7 +2503,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2512,7 +2512,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_lockfile_v3/packages/build
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2521,7 +2521,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level/api
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2530,7 +2530,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_nested_package_top_level_lockfile_v3/api
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2539,7 +2539,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspace_outdated_deps_not_in_root_package_json/bump-version-for-cron
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2551,7 +2551,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2563,7 +2563,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2575,7 +2575,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2587,7 +2587,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2599,7 +2599,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/workspaces_incorrect_version/package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2608,7 +2608,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm8/yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2620,7 +2620,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm9/private-public
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2632,7 +2632,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/npm9/simple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2641,7 +2641,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/aliased_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2650,7 +2650,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_dependency_private
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2662,7 +2662,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/github_sub_dependency_name_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2674,7 +2674,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_platform
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2686,7 +2686,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/invalid_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2695,7 +2695,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/lockfile_only_change
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2707,7 +2707,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/multiple_sub_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2719,7 +2719,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/no_lockfile_change
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2731,7 +2731,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_dependency_yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2740,7 +2740,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/nonexistent_locked_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2752,7 +2752,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/overrides_specified
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2764,7 +2764,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2773,7 +2773,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_changed
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2782,7 +2782,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_multiple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2791,7 +2791,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_switch
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2803,7 +2803,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_dependency_two_semver_constraints
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2812,7 +2812,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2821,7 +2821,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/peer_disambiguation_v6
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2833,7 +2833,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/pnpm-lock
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2842,7 +2842,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_registry_ghpr
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2854,7 +2854,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_source
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2863,7 +2863,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/private_tarball_urls
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2875,7 +2875,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/resolution_specified
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2884,7 +2884,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/simple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2896,7 +2896,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/tarball_urls
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2913,7 +2913,7 @@ jobs:
                   name: .-npm_and_yarn-spec-fixtures-projects-pnpm-typedoc-plugin-ui-router-Node-${{ matrix.node-version }}-Target
                   path: ./npm_and_yarn/spec/fixtures/projects/pnpm/typedoc-plugin-ui-router/Target
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2925,7 +2925,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2937,7 +2937,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2949,7 +2949,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/workspaces/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2961,7 +2961,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/pnpm/yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2970,7 +2970,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2979,7 +2979,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/aliased_dependency_name
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -2991,7 +2991,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/dist_tag
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3000,7 +3000,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/double_star_single_star_workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3009,7 +3009,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/double_star_workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3018,7 +3018,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/duplicate_indirect_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3030,7 +3030,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3042,7 +3042,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_from_subdep
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3054,7 +3054,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_local_file
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3066,7 +3066,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_outdated_req
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3078,7 +3078,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_dependency_with_auth
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3090,7 +3090,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/git_missing_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3102,7 +3102,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_semver
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3111,7 +3111,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_slash
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3123,7 +3123,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_dependency_yarn_semver
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3135,7 +3135,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_scoped_sub_dependency_version_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3147,7 +3147,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_name_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3159,7 +3159,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/github_sub_dependency_version_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3171,7 +3171,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/invalid_platform
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3180,7 +3180,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/latest_package_requirement
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3208,7 +3208,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/lockfile_only_change
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3220,7 +3220,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/multiple_sub_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3229,7 +3229,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/nested_glob_workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3241,7 +3241,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/no_lockfile_change
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3253,7 +3253,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/nonexistent_dependency_yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3265,7 +3265,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/npm_global_registry
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3277,7 +3277,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/only_dev_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3289,7 +3289,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/optional_dependencies
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3301,7 +3301,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3310,7 +3310,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/package_json_contains_illegal_characters_in_name
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3322,7 +3322,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency/deps/etag
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3334,7 +3334,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/path_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3349,7 +3349,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3361,7 +3361,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_monorepo/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3370,7 +3370,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_multiple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3382,7 +3382,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_nested/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3391,7 +3391,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/peer_dependency_switch
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3403,7 +3403,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/private_source
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3415,7 +3415,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolution_specified
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3427,7 +3427,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3439,7 +3439,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/resolutions_invalid
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3451,7 +3451,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/scoped_private_source_with_npmrc
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3463,7 +3463,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/subdependency_out_of_range_gt
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3472,7 +3472,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3481,7 +3481,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-example
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3490,7 +3490,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/submodule_dependency/yarn-workspace-git-submodule-example
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3502,7 +3502,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/symlinked_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3511,7 +3511,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_fully_typed
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3520,7 +3520,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_missing_types
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3529,7 +3529,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/ts_no_type_update
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3546,7 +3546,7 @@ jobs:
                   name: .-npm_and_yarn-spec-fixtures-projects-yarn-typedoc-plugin-ui-router-Node-${{ matrix.node-version }}-Target
                   path: ./npm_and_yarn/spec/fixtures/projects/yarn/typedoc-plugin-ui-router/Target
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3558,7 +3558,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspace_requirements_no_lockfile
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3570,7 +3570,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3582,7 +3582,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3594,7 +3594,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3606,7 +3606,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3618,7 +3618,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3630,7 +3630,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/workspaces_bad/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3642,7 +3642,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yanked_version
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3654,7 +3654,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_global_registry_with_space
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3663,7 +3663,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn/yarnrc_npm_registry
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3675,7 +3675,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/env_variable
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3703,7 +3703,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/lockfile_only_change
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3715,7 +3715,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/misconfigured
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3724,7 +3724,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/multiple_requirements
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3736,7 +3736,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/no_lockfile_change
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3748,7 +3748,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3760,7 +3760,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/peer_dependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3772,7 +3772,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/private_source
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3781,7 +3781,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3790,7 +3790,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_node_modules
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3799,7 +3799,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/simple_nopnp
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3808,7 +3808,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/subdependency
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3820,7 +3820,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3832,7 +3832,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3844,7 +3844,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/workspaces/packages/package1
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3853,7 +3853,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_global_registry
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3865,7 +3865,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/projects/yarn_berry/yarnrc_yml_misconfigured
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3877,7 +3877,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/subdependency_update_tab_indentation
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3889,7 +3889,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm6/transitive_dependency_locked_by_intermediate_top_and_sub
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3898,7 +3898,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/lockfile_with_newline
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3907,7 +3907,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_missing
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3916,7 +3916,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/packages_name_outdated
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3925,7 +3925,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/simple
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3934,7 +3934,7 @@ jobs:
             - run: pnpm install
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/simple_no_indentation
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3946,7 +3946,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/subdependency_update_tab_indentation
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3958,7 +3958,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/transitive_dependency_locked_by_intermediate_top_and_sub
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3970,7 +3970,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev/other_package
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
@@ -3982,7 +3982,7 @@ jobs:
             - run: pnpm run test
               working-directory: ./npm_and_yarn/spec/fixtures/updated_projects/npm8/workspaces_dev
 
-            - uses: actions/setup-node@v4.3.0
+            - uses: actions/setup-node@v4.4.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"

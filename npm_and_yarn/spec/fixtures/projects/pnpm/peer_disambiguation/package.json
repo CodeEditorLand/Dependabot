@@ -14,7 +14,7 @@
 	"license": "MIT",
 	"author": "Nhost",
 	"devDependencies": {
-		"@typescript-eslint/parser": "8.31.1",
+		"@typescript-eslint/parser": "8.32.0",
 		"eslint": "9.26.0",
 		"typescript": "5.8.3"
 	},
