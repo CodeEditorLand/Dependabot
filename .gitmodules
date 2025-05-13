@@ -2,4 +2,3 @@
 path = nuget/helpers/lib/NuGet.Client
 url = https://github.com/NuGet/NuGet.Client
 branch = release-6.9.x
-ignore = all
