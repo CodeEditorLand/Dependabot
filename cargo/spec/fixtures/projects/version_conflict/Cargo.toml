@@ -7,4 +7,4 @@ askama = { git = "https://github.com/djc/askama", rev = "d45e106bf219d6da94538e2
 [package]
 authors = ["support@dependabot.com"]
 name = "version_conflict"
-version = "0.1.0"
+version = "0.0.1"

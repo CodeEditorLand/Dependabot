@@ -4,6 +4,6 @@
 	"type": "module",
 	"dependencies": {
 		"@googleapis/youtube": "25.1.0",
-                "@tiptap-pro/extension-mathematics": "latest"
+		"@tiptap-pro/extension-mathematics": "latest"
 	}
 }
