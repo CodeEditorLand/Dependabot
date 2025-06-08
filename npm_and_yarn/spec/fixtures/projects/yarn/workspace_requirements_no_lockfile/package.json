@@ -17,6 +17,6 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"ember-simple-charts": "workspace:*"
+		"ember-simple-charts": "12.2.0"
 	}
 }

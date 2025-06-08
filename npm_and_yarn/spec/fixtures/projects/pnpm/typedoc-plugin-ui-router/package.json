@@ -21,7 +21,7 @@
 		"@types/handlebars": "4.1.0",
 		"husky": "9.1.7",
 		"prettier": "3.5.3",
-		"pretty-quick": "4.1.1",
+		"pretty-quick": "4.2.2",
 		"typedoc": "0.28.5",
 		"typescript": "5.8.3"
 	},

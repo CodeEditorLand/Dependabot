@@ -9,6 +9,6 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"raven-js": "getsentry/raven-js#9.22.0"
+		"raven-js": "getsentry/raven-js#9.27.0"
 	}
 }
