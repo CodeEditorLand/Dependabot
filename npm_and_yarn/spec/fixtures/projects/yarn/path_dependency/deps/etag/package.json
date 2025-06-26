@@ -1,44 +1,44 @@
 {
 	"name": "etag",
-	"description": "Create simple ETags",
 	"version": "1.8.0",
-	"contributors": [
-		"Douglas Christopher Wilson <doug@somethingdoug.com>",
-		"David Björklund <david.bjorklund@gmail.com>"
-	],
-	"license": "MIT",
+	"description": "Create simple ETags",
 	"keywords": [
 		"etag",
 		"http",
 		"res"
 	],
 	"repository": "jshttp/etag",
-	"devDependencies": {
-		"beautify-benchmark": "0.2.4",
-		"benchmark": "2.1.4",
-		"eslint": "9.28.0",
-		"eslint-config-standard": "17.1.0",
-		"eslint-plugin-markdown": "5.1.0",
-		"eslint-plugin-promise": "7.2.1",
-		"eslint-plugin-standard": "5.0.0",
-		"istanbul": "0.4.5",
-		"mocha": "11.5.0",
-		"seedrandom": "3.0.5"
-	},
+	"license": "MIT",
+	"contributors": [
+		"Douglas Christopher Wilson <doug@somethingdoug.com>",
+		"David Björklund <david.bjorklund@gmail.com>"
+	],
 	"files": [
 		"LICENSE",
 		"HISTORY.md",
 		"README.md",
 		"index.js"
 	],
-	"engines": {
-		"node": ">= 0.6"
-	},
 	"scripts": {
 		"bench": "node benchmark/index.js",
 		"lint": "eslint --plugin markdown --ext js,md .",
 		"test": "mocha --reporter spec --bail --check-leaks test/",
 		"test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
 		"test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+	},
+	"devDependencies": {
+		"beautify-benchmark": "0.2.4",
+		"benchmark": "2.1.4",
+		"eslint": "9.29.0",
+		"eslint-config-standard": "17.1.0",
+		"eslint-plugin-markdown": "5.1.0",
+		"eslint-plugin-promise": "7.2.1",
+		"eslint-plugin-standard": "5.0.0",
+		"istanbul": "0.4.5",
+		"mocha": "11.7.0",
+		"seedrandom": "3.0.5"
+	},
+	"engines": {
+		"node": ">= 0.6"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "shrink-wrap",
 	"devDependencies": {
-		"unleash-server": "6.10.1"
+		"unleash-server": "7.0.3"
 	}
 }

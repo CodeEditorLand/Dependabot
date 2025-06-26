@@ -5,6 +5,6 @@
 	"description": "CLI to bump the version to during a cron daily alpha release",
 	"license": "MIT",
 	"devDependencies": {
-		"@swc/core": "1.11.31"
+		"@swc/core": "1.12.5"
 	}
 }

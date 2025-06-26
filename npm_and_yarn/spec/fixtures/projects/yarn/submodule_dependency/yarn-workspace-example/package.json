@@ -1,16 +1,16 @@
 {
-  "name": "yarn-workspace-example",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "ts-node src/index.ts"
-  },
-  "dependencies": {
-    "axios": "1.9.0",
-    "koa": "3.0.0"
-  },
-  "devDependencies": {
-    "@types/koa": "2.15.0",
-    "ts-node": "10.9.2",
-    "typescript": "5.8.3"
-  }
+	"name": "yarn-workspace-example",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "ts-node src/index.ts"
+	},
+	"dependencies": {
+		"axios": "1.10.0",
+		"koa": "3.0.0"
+	},
+	"devDependencies": {
+		"@types/koa": "2.15.0",
+		"ts-node": "10.9.2",
+		"typescript": "5.8.3"
+	}
 }
